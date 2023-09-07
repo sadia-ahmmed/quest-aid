@@ -19,9 +19,9 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.getWriter().write("JWT NOT VALID");
             response.getWriter().flush();
-        } catch (EntityNotFoundException e) { //Feel free to create a separate function.
+        } catch (EntityNotFoundException e) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().write("Username doesn't exist");
+            response.getWriter().write("Email doesn't exist");
             response.getWriter().flush();
         } catch (RuntimeException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

@@ -3,9 +3,8 @@ package com.project.questaidbackend.security.filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.questaidbackend.models.Admin;
+import com.project.questaidbackend.models.base.LoginAttempt;
 import com.project.questaidbackend.security.SecurityConstants;
-import com.project.questaidbackend.security.manager.CustomAuthManager;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,10 +27,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            Admin admin = new ObjectMapper().readValue(request.getInputStream(), Admin.class);
+            LoginAttempt loginAttempt = new ObjectMapper().readValue(request.getInputStream(), LoginAttempt.class);
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(
-                    admin.getEmail(), admin.getPassword()
+                    loginAttempt.getEmail(), loginAttempt.getPassword() + "//" + loginAttempt.getType()
             );
 
             return authManager.authenticate(authentication);

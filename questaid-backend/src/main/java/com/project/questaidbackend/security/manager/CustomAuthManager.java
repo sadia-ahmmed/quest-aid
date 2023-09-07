@@ -1,7 +1,8 @@
 package com.project.questaidbackend.security.manager;
 
-import com.project.questaidbackend.models.Admin;
-import com.project.questaidbackend.services.interfaces.IAdminService;
+import com.project.questaidbackend.helpers.enums.LoginEntityType;
+import com.project.questaidbackend.helpers.factories.AuthFactory;
+import com.project.questaidbackend.models.base.LoginAttempt;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,14 +16,26 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class CustomAuthManager implements AuthenticationManager {
 
-    private IAdminService adminService;
+//    private IAdminService adminService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private AuthFactory authFactory;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        Admin admin = adminService.getAdminByEmail(authentication.getName());
+        String[] credentialString = authentication.getCredentials().toString().split("//");
 
-        if(!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), admin.getPassword())) {
+        String authPassword = credentialString[0];
+        LoginEntityType loginEntityType = LoginEntityType.valueOf(credentialString[1]);
+
+
+        LoginAttempt authClass = authFactory.getAuthEntityDetails(loginEntityType, authentication.getName());
+
+        if(
+                !bCryptPasswordEncoder.matches(
+                        authPassword,
+                        authClass.getPassword()
+                )
+        ) {
             throw new BadCredentialsException("Wrong credentials");
         }
 
