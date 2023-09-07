@@ -1,0 +1,17 @@
+version: '1'
+services:
+  model-services:
+    image: model-services
+    container_name: model-services
+    environment:
+      - WEB_BIND=0.0.0.0:8080
+    network_mode: host
+    ports:
+      - "8080:8080"
+    volumes:
+      - model-services:/app/data
+    restart:
+      - always
+    command: python3 -m flask --app app run --port=8080
+volumes:
+  model-services:
