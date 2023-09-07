@@ -3,14 +3,12 @@ package com.project.questaidbackend.controllers;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.services.interfaces.IAdminService;
+import com.project.questaidbackend.services.interfaces.IStudentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -29,6 +27,13 @@ public class AdminController {
     @PostMapping("/add/club")
     public ResponseEntity<Club> createClub(@Valid @RequestBody Club club) {
         return new ResponseEntity<>(adminService.createClub(club), HttpStatus.CREATED);
+    }
+
+
+    @PutMapping("/verify/{id}/student/{status}")
+    public ResponseEntity<HttpStatus> verifyStudent(@PathVariable Long id, @PathVariable Boolean status){
+        adminService.verifyStudent(id, status);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

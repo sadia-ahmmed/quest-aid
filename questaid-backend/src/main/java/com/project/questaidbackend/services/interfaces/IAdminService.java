@@ -2,12 +2,16 @@ package com.project.questaidbackend.services.interfaces;
 
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
+import com.project.questaidbackend.models.Student;
 
 public interface IAdminService {
-    public Club createClub(Club club);
     public Admin createAdmin(Admin admin);
     public Admin getAdminById(Long id);
     public Admin getAdminByEmail(String email);
-    public void remove(Club club);
+
+    public void verifyStudent(Long id, Boolean status);
+
+    public Club createClub(Club club);
+    public void removeClub(Club club);
     public void modifyClub(Club club);
 }

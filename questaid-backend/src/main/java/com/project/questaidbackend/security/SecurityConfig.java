@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
                 .requestMatchers(HttpMethod.GET, SecurityConstants.PUBLIC_GET_PATH).permitAll()
+                .requestMatchers(HttpMethod.PUT, SecurityConstants.ADMIN_PATHS).authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

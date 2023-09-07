@@ -3,9 +3,12 @@ package com.project.questaidbackend.services;
 import com.project.questaidbackend.exceptions.EntityNotFoundException;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
+import com.project.questaidbackend.models.Student;
 import com.project.questaidbackend.repository.AdminRepository;
 import com.project.questaidbackend.repository.ClubRepository;
+import com.project.questaidbackend.repository.StudentRepository;
 import com.project.questaidbackend.services.interfaces.IAdminService;
+import com.project.questaidbackend.services.interfaces.IStudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,7 +23,12 @@ public class AdminServicesImpl implements IAdminService {
 
     private ClubRepository clubRepository;
     private AdminRepository adminRepository;
+    private StudentRepository studentRepository;
 
+    /**
+     *  ADMIN SIDE FUNCTIONALITY
+     *
+     */
     @Override
     public Admin createAdmin(Admin admin) {
         admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
@@ -39,6 +47,19 @@ public class AdminServicesImpl implements IAdminService {
         return unwrapAdmin(admin, 404L);
     }
 
+
+    /**
+     * Student Side Functionality
+     */
+    @Override
+    public void verifyStudent(Long id, Boolean status) {
+        studentRepository.updateStudent(status, id);
+    }
+
+    /**
+     * Club side functionality
+     */
+
     @Override
     public Club createClub(Club club) {
         club.setPassword(bCryptPasswordEncoder.encode(club.getPassword()));
@@ -46,7 +67,7 @@ public class AdminServicesImpl implements IAdminService {
     }
 
     @Override
-    public void remove(Club club) {
+    public void removeClub(Club club) {
         clubRepository.delete(club);
     }
 
