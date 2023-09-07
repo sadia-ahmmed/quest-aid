@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "student")
 @Table(name = "student")
 @RequiredArgsConstructor
 @Getter
@@ -37,6 +37,13 @@ public class Student {
     @Column(unique = true, nullable = false)
     private String phone;
 
-    @OneToMany(mappedBy = "entity", cascade = CascadeType.ALL)
-    private List<SocialLinks> socialLinksList;
+    @Column
+    private String avatar;
+
+    @NonNull
+    @Column(nullable = false)
+    private Boolean verified = false;
+
+//    @OneToMany(mappedBy = "entity", cascade = CascadeType.ALL)
+//    private List<SocialLinks> socialLinksList;
 }

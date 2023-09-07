@@ -1,6 +1,7 @@
 package com.project.questaidbackend.models.aggregate;
 
 import com.project.questaidbackend.helpers.enums.SocialType;
+import com.project.questaidbackend.models.Student;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
@@ -17,11 +18,11 @@ public class SocialLinks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-
-    @NonNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "entity_id", referencedColumnName = "id")
-    private Object entity;
+//
+//    @NonNull
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "entity_id", referencedColumnName = "id")
+//    private Student entity;
 
     @NonNull
     @Column(name = "social_type")
