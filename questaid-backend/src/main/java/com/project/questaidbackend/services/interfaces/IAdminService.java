@@ -8,10 +8,4 @@ public interface IAdminService {
     public Admin createAdmin(Admin admin);
     public Admin getAdminById(Long id);
     public Admin getAdminByEmail(String email);
-
-    public void verifyStudent(Long id, Boolean status);
-
-    public Club createClub(Club club);
-    public void removeClub(Club club);
-    public void modifyClub(Club club);
 }

@@ -1,7 +1,7 @@
 package com.project.questaidbackend.security.manager;
 
-import com.project.questaidbackend.helpers.enums.LoginEntityType;
-import com.project.questaidbackend.helpers.factories.AuthFactory;
+import com.project.questaidbackend.models.enums.LoginEntityType;
+import com.project.questaidbackend.helpers.AuthFactory;
 import com.project.questaidbackend.models.base.LoginAttempt;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

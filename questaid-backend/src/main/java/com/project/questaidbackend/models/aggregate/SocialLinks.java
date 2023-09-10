@@ -1,7 +1,6 @@
 package com.project.questaidbackend.models.aggregate;
 
-import com.project.questaidbackend.helpers.enums.SocialType;
-import com.project.questaidbackend.models.Student;
+import com.project.questaidbackend.models.enums.SocialType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
@@ -25,6 +24,7 @@ public class SocialLinks {
 //    private Student entity;
 
     @NonNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "social_type")
     private SocialType socialType;
 

@@ -3,6 +3,7 @@ package com.project.questaidbackend.controllers;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.services.interfaces.IAdminService;
+import com.project.questaidbackend.services.interfaces.IClubService;
 import com.project.questaidbackend.services.interfaces.IStudentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     private IAdminService adminService;
+    private IClubService clubService;
+    private IStudentService studentService;
 
     // TODO: shift to university side
     @PostMapping("/register")
@@ -26,13 +29,12 @@ public class AdminController {
 
     @PostMapping("/add/club")
     public ResponseEntity<Club> createClub(@Valid @RequestBody Club club) {
-        return new ResponseEntity<>(adminService.createClub(club), HttpStatus.CREATED);
+        return new ResponseEntity<>(clubService.createClub(club), HttpStatus.CREATED);
     }
-
 
     @PutMapping("/verify/{id}/student/{status}")
     public ResponseEntity<HttpStatus> verifyStudent(@PathVariable Long id, @PathVariable Boolean status){
-        adminService.verifyStudent(id, status);
+        studentService.verifyStudent(id, status);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

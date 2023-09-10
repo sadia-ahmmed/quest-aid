@@ -1,7 +1,6 @@
 package com.project.questaidbackend.models.base;
 
-import com.project.questaidbackend.helpers.enums.LoginEntityType;
-import jakarta.persistence.Entity;
+import com.project.questaidbackend.models.enums.LoginEntityType;
 import lombok.*;
 
 

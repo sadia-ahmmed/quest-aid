@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ClubRepository extends CrudRepository<Club, Long> {
     Optional<Club> findByEmail(String email);
+    Optional<Club> findByClubName(String name);
 }

@@ -1,5 +1,8 @@
 package com.project.questaidbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.questaidbackend.models.aggregate.SocialLinks;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +12,7 @@ import java.util.List;
 @Entity(name = "student")
 @Table(name = "student")
 @RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Student {
@@ -42,8 +46,10 @@ public class Student {
 
     @NonNull
     @Column(nullable = false)
-    private Boolean verified = false;
+    private boolean verified = false;
 
-//    @OneToMany(mappedBy = "entity", cascade = CascadeType.ALL)
-//    private List<SocialLinks> socialLinksList;
+    // * a one-to-many mapping to club members class
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, targetEntity = ClubMember.class)
+//    @JsonIgnore
+    private List<ClubMember> clubsJoined;
 }
