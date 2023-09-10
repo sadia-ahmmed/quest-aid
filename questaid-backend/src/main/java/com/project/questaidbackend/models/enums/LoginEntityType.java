@@ -1,4 +1,4 @@
-package com.project.questaidbackend.helpers.enums;
+package com.project.questaidbackend.models.enums;
 
 public enum LoginEntityType {
     ADMIN,

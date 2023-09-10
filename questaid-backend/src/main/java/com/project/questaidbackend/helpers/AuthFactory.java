@@ -1,22 +1,15 @@
-package com.project.questaidbackend.helpers.factories;
+package com.project.questaidbackend.helpers;
 
-import com.project.questaidbackend.helpers.enums.LoginEntityType;
+import com.project.questaidbackend.models.enums.LoginEntityType;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.Student;
 import com.project.questaidbackend.models.base.LoginAttempt;
-import com.project.questaidbackend.repository.AdminRepository;
-import com.project.questaidbackend.repository.ClubRepository;
-import com.project.questaidbackend.repository.StudentRepository;
 import com.project.questaidbackend.services.interfaces.IAdminService;
 import com.project.questaidbackend.services.interfaces.IClubService;
 import com.project.questaidbackend.services.interfaces.IStudentService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor
