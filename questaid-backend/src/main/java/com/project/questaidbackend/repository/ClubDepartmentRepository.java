@@ -14,5 +14,5 @@ public interface ClubDepartmentRepository extends CrudRepository<ClubDepartment,
 //            "WHERE cd.id = :dept_id"
 //            , nativeQuery = true
 //    )
-//    List<ResponseClubMembers> getDepartmentMembers(@Param(value = "dept_id") Long deptId);
+//    List<ResponseClubMember> getDepartmentMembers(@Param(value = "dept_id") Long deptId);
 }

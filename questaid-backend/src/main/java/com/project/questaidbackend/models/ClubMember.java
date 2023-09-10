@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.questaidbackend.models.enums.ClubMemberRoles;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Null;
 import lombok.*;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class ClubMember {
     @NonNull
     @ManyToOne(optional = false, targetEntity = ClubDepartment.class)
     @JsonIgnore
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = true)
     private ClubDepartment clubDepartment;
 
 
@@ -49,7 +50,6 @@ public class ClubMember {
 
 
     // one to many mapping to task class
-    @NonNull
     @OneToMany(mappedBy = "clubMember", cascade = CascadeType.ALL, targetEntity = Task.class)
     @JsonIgnore
     private List<Task> tasks;

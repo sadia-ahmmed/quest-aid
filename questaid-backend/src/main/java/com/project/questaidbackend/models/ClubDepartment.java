@@ -20,6 +20,7 @@ public class ClubDepartment {
     @Column
     private Long id;
 
+    @NonNull
     @ManyToOne(optional = false, targetEntity = Club.class)
     @JoinColumn(name = "club_id", referencedColumnName = "id")
     @JsonIgnore

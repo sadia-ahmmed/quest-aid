@@ -35,6 +35,11 @@ public class StudentServiceImpl implements IStudentService {
         return unwrapStudent(student, 404L);
     }
 
+    @Override
+    public void verifyStudent(Long id, Boolean status) {
+        studentRepository.updateStudent(status, id);
+    }
+
     static Student unwrapStudent(Optional<Student> entity, Long id) {
         if (entity.isPresent()) return entity.get();
         else throw new EntityNotFoundException(id, Student.class);

@@ -6,4 +6,5 @@ public interface IStudentService {
     Student createStudent(Student student);
     Student getStudentById(Long id);
     Student getStudentByEmail(String email);
+    void verifyStudent(Long id, Boolean status);
 }
