@@ -51,7 +51,7 @@ public class ClubMember {
 
     // one to many mapping to task class
     @OneToMany(mappedBy = "clubMember", cascade = CascadeType.ALL, targetEntity = Task.class)
-    @JsonIgnore
+//    @JsonIgnore
     private List<Task> tasks;
 
 }

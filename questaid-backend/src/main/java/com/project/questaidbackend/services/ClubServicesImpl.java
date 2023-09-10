@@ -21,6 +21,11 @@ public class ClubServicesImpl implements IClubService {
     private IClubDepartmentService clubDepartmentService;
 
     @Override
+    public Club getClubByName(String name) {
+        return unwrapClub(clubRepository.findByClubName(name), 404L);
+    }
+
+    @Override
     public Club createClub(Club club) {
         club.setPassword(bCryptPasswordEncoder.encode(club.getPassword()));
         Club savedClub = clubRepository.save(club);

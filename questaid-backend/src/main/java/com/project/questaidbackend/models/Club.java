@@ -41,7 +41,7 @@ public class Club {
     private String phone;
 
     // * a one-to-many mapping to club members class
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = ClubMember.class)
     private List<ClubMember> clubMembers;
 

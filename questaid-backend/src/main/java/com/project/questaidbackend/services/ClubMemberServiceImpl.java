@@ -28,7 +28,17 @@ public class ClubMemberServiceImpl implements IClubMemberService {
     private IClubDepartmentService clubDepartmentService;
 
     @Override
-    public ResponseClubMember getClubMemberDetails(Long id) {
+    public ClubMember getClubMemberAllDetailsById(Long id) {
+        return unwrapClubMember(clubMemberRepository.findById(id), id);
+    }
+
+    @Override
+    public ResponseClubMember getClubMemberById(Long id) {
+        return new ResponseClubMember(unwrapClubMember(clubMemberRepository.findById(id), id));
+    }
+
+    @Override
+    public ResponseClubMember getResponseClubMember(Long id) {
         ClubMember clubMember = unwrapClubMember(clubMemberRepository.findByStudentId(id), id);
         return new ResponseClubMember(clubMember);
     }
@@ -61,6 +71,13 @@ public class ClubMemberServiceImpl implements IClubMemberService {
         System.out.println(existingClubMember.getStudent().getFirstName());
 
         return clubMemberRepository.save(existingClubMember);
+    }
+
+    @Override
+    public ClubMember changeMemberRole(Long clubMemberId, ClubMemberRoles newRole) {
+        ClubMember clubMember = unwrapClubMember(clubMemberRepository.findById(clubMemberId), clubMemberId);
+        clubMember.setClubMemberRoles(newRole);
+        return clubMemberRepository.save(clubMember);
     }
 
     static ClubMember unwrapClubMember(Optional<ClubMember> entity, Long id) {

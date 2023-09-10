@@ -32,7 +32,6 @@ public class AdminController {
         return new ResponseEntity<>(clubService.createClub(club), HttpStatus.CREATED);
     }
 
-
     @PutMapping("/verify/{id}/student/{status}")
     public ResponseEntity<HttpStatus> verifyStudent(@PathVariable Long id, @PathVariable Boolean status){
         studentService.verifyStudent(id, status);

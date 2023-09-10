@@ -50,6 +50,6 @@ public class Student {
 
     // * a one-to-many mapping to club members class
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, targetEntity = ClubMember.class)
-    @JsonIgnore
+//    @JsonIgnore
     private List<ClubMember> clubsJoined;
 }

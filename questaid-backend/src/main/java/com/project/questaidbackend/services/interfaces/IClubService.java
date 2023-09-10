@@ -4,6 +4,7 @@ import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.ClubDepartment;
 
 public interface IClubService {
+    Club getClubByName(String name);
     Club createClub(Club club);
     void removeClub(Club club);
     void modifyClub(Club club);

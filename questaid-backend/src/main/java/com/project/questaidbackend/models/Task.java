@@ -18,18 +18,15 @@ public class Task {
     @Column
     private Long id;
 
-    @NonNull
     @ManyToOne(optional = false, targetEntity = ClubMember.class)
     @JsonIgnore
     @JoinColumn(name = "assigned_to_id", referencedColumnName = "id")
     private ClubMember clubMember;
 
-    @NonNull
     @ManyToOne(optional = false, targetEntity = Club.class)
     @JsonIgnore
     @JoinColumn(name = "assigned_by_id", referencedColumnName = "id")
     private Club club;
-
 
     @NonNull
     @Column(nullable = false)
