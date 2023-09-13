@@ -1,6 +1,7 @@
 package com.project.questaidbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,10 +24,13 @@ public class EventCollaborator {
     @JsonIgnore
     private Event event;
 
-    @NonNull
-    @ManyToOne(optional = false, targetEntity = Club.class)
-    @JoinColumn(name = "collaborator_id", referencedColumnName = "id")
+    @ManyToOne(targetEntity = Club.class)
+    @JoinColumn(name = "club_collaborator_id", referencedColumnName = "id")
+    private Club clubCollaborator;
+
+    @ManyToOne(targetEntity = Organization.class)
+    @JoinColumn(name = "org_collaborator_id", referencedColumnName = "id")
     @JsonIgnore
-    private Club collaborator;
+    private Organization orgCollaborator;
 
 }

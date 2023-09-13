@@ -8,7 +8,7 @@ public interface IClubService {
     Club createClub(Club club);
     void removeClub(Club club);
     void modifyClub(Club club);
-    Club getClub(Long id);
+    Club getClubById(Long id);
     Club getClubByEmail(String email);
     ClubDepartment addDepartment(ClubDepartment department, Long clubId);
 }

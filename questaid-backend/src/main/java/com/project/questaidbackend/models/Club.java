@@ -1,7 +1,7 @@
 package com.project.questaidbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.questaidbackend.models.aggregate.SocialLinks;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -56,13 +56,19 @@ public class Club {
     private List<Task> memberTasks;
 
     // * a one-to-many mapping to transaction class
-    @JsonIgnore
-    @OneToMany(mappedBy = "payedTo", cascade = CascadeType.PERSIST, targetEntity = Transaction.class)
+//    @JsonIgnore
+    @OneToMany(mappedBy = "payedTo", cascade = CascadeType.ALL, targetEntity = Transaction.class)
     private List<Transaction> transactions;
 
     // * a one-to-many mapping to event class
-    @JsonIgnore
-    @OneToOne(mappedBy = "organizer", cascade = CascadeType.PERSIST, targetEntity = Event.class)
+    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL, targetEntity = Event.class)
     private List<Event> events;
+
+    @OneToMany(mappedBy = "clubEntity", cascade = CascadeType.ALL, targetEntity = SocialLinks.class)
+    private List<SocialLinks> socialLinks;
+
+    @OneToMany(mappedBy = "clubCollaborator", cascade = CascadeType.ALL, targetEntity = EventCollaborator.class)
+    @JsonIgnore
+    private List<EventCollaborator> collaboratedEventsList;
 
 }
