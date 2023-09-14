@@ -1,11 +1,11 @@
 package com.project.questaidbackend.services;
 
 import com.project.questaidbackend.exceptions.EntityNotFoundException;
-import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.Organization;
 import com.project.questaidbackend.repository.OrganizationRepository;
 import com.project.questaidbackend.services.interfaces.IOrganizationService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,7 +14,14 @@ import java.util.Optional;
 @AllArgsConstructor
 public class OrganizationServiceImpl implements IOrganizationService {
 
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     private OrganizationRepository organizationRepository;
+
+    @Override
+    public Organization addOrganization(Organization organization) {
+        organization.setPassword(bCryptPasswordEncoder.encode(organization.getPassword()));
+        return organizationRepository.save(organization);
+    }
 
     @Override
     public Organization getOrganizationByEmail(String email) {

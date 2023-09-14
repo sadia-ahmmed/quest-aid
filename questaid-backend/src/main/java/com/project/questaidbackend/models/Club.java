@@ -41,12 +41,11 @@ public class Club {
     private String phone;
 
     // * a one-to-many mapping to club members class
-//    @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = ClubMember.class)
     private List<ClubMember> clubMembers;
 
     // * a one-to-many mapping to club departments class
-//    @JsonIgnore
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = ClubDepartment.class)
     private List<ClubDepartment> clubDepartments;
 
@@ -55,20 +54,24 @@ public class Club {
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = Task.class)
     private List<Task> memberTasks;
 
-    // * a one-to-many mapping to transaction class
+    // * a one-to-one mapping to treasury class
 //    @JsonIgnore
-    @OneToMany(mappedBy = "payedTo", cascade = CascadeType.ALL, targetEntity = Transaction.class)
-    private List<Transaction> transactions;
+    @OneToOne(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = Treasury.class)
+    private Treasury treasury;
 
     // * a one-to-many mapping to event class
-    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL, targetEntity = Event.class)
+    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.PERSIST, targetEntity = Event.class)
     private List<Event> events;
 
     @OneToMany(mappedBy = "clubEntity", cascade = CascadeType.ALL, targetEntity = SocialLinks.class)
     private List<SocialLinks> socialLinks;
 
-    @OneToMany(mappedBy = "clubCollaborator", cascade = CascadeType.ALL, targetEntity = EventCollaborator.class)
+    @OneToMany(mappedBy = "clubCollaborator", cascade = CascadeType.PERSIST, targetEntity = EventCollaborator.class)
     @JsonIgnore
     private List<EventCollaborator> collaboratedEventsList;
+
+    @OneToMany(mappedBy = "announcer", cascade = CascadeType.ALL, targetEntity = Announcement.class)
+    @JsonIgnore
+    private List<Announcement> announcements;
 
 }

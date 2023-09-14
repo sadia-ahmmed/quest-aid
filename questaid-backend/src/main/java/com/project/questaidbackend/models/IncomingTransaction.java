@@ -1,6 +1,5 @@
 package com.project.questaidbackend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.questaidbackend.models.enums.PayingEntityType;
 import com.project.questaidbackend.models.enums.TransactionType;
 import jakarta.persistence.*;
@@ -12,29 +11,19 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Transaction {
+public class IncomingTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
     @NonNull
-    @ManyToOne(optional = false, targetEntity = Club.class)
-    @JoinColumn(name = "payed_to", referencedColumnName = "id")
-    @JsonIgnore
-    private Club payedTo;
-
-//    solve the payed by issue
-//    @NonNull
-//    @ManyToOne(optional = false, targetEntity = Club.class)
-//    @JoinColumn(name = "payed_to", referencedColumnName = "id")
-//    private Club payedTo;
-
+    @Column
+    private String payedBy;
 
     @NonNull
     @Column(nullable = false)
-    private double amount;
-
+    private double amount = 0.0d;
 
     @NonNull
     @Column
@@ -49,5 +38,12 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PayingEntityType payingEntity;
+
+
+    @NonNull
+    @ManyToOne(targetEntity = Treasury.class)
+    @JoinColumn(name = "payed_to_treasury", referencedColumnName = "id")
+    private Treasury clubTreasury;
+
 
 }
