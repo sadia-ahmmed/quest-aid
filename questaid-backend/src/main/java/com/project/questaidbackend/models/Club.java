@@ -54,10 +54,10 @@ public class Club {
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = Task.class)
     private List<Task> memberTasks;
 
-    // * a one-to-many mapping to transaction class
-    @JsonIgnore
-    @OneToMany(mappedBy = "payedTo", cascade = CascadeType.ALL, targetEntity = Transaction.class)
-    private List<Transaction> transactions;
+    // * a one-to-one mapping to treasury class
+//    @JsonIgnore
+    @OneToOne(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = Treasury.class)
+    private Treasury treasury;
 
     // * a one-to-many mapping to event class
     @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.PERSIST, targetEntity = Event.class)
