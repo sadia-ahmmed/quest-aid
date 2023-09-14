@@ -21,15 +21,7 @@ public class Transaction {
     @NonNull
     @ManyToOne(optional = false, targetEntity = Club.class)
     @JoinColumn(name = "payed_to", referencedColumnName = "id")
-    @JsonIgnore
     private Club payedTo;
-
-//    solve the payed by issue
-//    @NonNull
-//    @ManyToOne(optional = false, targetEntity = Club.class)
-//    @JoinColumn(name = "payed_to", referencedColumnName = "id")
-//    private Club payedTo;
-
 
     @NonNull
     @Column(nullable = false)

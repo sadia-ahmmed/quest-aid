@@ -1,7 +1,6 @@
 package com.project.questaidbackend.services;
 
 import com.project.questaidbackend.exceptions.EntityNotFoundException;
-import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.Organization;
 import com.project.questaidbackend.repository.OrganizationRepository;
 import com.project.questaidbackend.services.interfaces.IOrganizationService;
@@ -15,6 +14,11 @@ import java.util.Optional;
 public class OrganizationServiceImpl implements IOrganizationService {
 
     private OrganizationRepository organizationRepository;
+
+    @Override
+    public Organization addOrganization(Organization organization) {
+        return organizationRepository.save(organization);
+    }
 
     @Override
     public Organization getOrganizationByEmail(String email) {

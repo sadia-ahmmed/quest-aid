@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -40,6 +41,15 @@ public class Event {
     @NonNull
     @Column(nullable = false)
     private String eventType;
+
+    @NonNull
+    @Column
+    private LocalDate startDate;
+
+    @NonNull
+    @Column
+    private LocalDate endDate;
+
 
     @Column(nullable = false)
     private boolean approved = false;
