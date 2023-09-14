@@ -52,4 +52,11 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, targetEntity = ClubMember.class)
 //    @JsonIgnore
     private List<ClubMember> clubsJoined;
+
+    // * a one-to-many mapping to social links
+    @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL, targetEntity = SocialLinks.class)
+    private List<SocialLinks> socialLinks;
+
+    @ManyToMany(mappedBy = "participants", targetEntity = Event.class, cascade = CascadeType.ALL)
+    private List<Event> eventsParticipating;
 }

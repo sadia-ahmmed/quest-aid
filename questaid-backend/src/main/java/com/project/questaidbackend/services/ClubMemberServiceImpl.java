@@ -46,7 +46,7 @@ public class ClubMemberServiceImpl implements IClubMemberService {
     @Override
     public ClubMember addMemberInClub(Long studentId, Long clubId) {
         Student student = studentService.getStudentById(studentId);
-        Club club = clubService.getClub(clubId);
+        Club club = clubService.getClubById(clubId);
 
         ClubMember clubMember = new ClubMember(
                 student,

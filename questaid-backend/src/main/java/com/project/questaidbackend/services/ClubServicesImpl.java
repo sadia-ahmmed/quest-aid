@@ -46,7 +46,7 @@ public class ClubServicesImpl implements IClubService {
     }
 
     @Override
-    public Club getClub(Long id) {
+    public Club getClubById(Long id) {
         Optional<Club> club = clubRepository.findById(id);
         return unwrapClub(club, id);
     }
@@ -59,7 +59,7 @@ public class ClubServicesImpl implements IClubService {
 
     @Override
     public ClubDepartment addDepartment(ClubDepartment department, Long clubId) {
-        Club club = getClub(clubId);
+        Club club = getClubById(clubId);
         return clubDepartmentService.addDepartment(department, club);
     }
 
