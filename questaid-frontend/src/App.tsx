@@ -1,13 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Login from './pages/Login/index'
-import Dashboard from './pages/Dashboard/index'
 import { useAuthContext } from './context/AuthContext';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppRouter from './router/AppRouter';
 import AuthRouter from './router/AuthRouter';
-
+import Navbar from './components/Navbar';
 function App() {
 
   const { isLoggedIn, setLoggedIn, userCache, setUserCache, jwtToken, setJwtToken } = useAuthContext()

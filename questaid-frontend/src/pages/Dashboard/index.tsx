@@ -1,10 +1,12 @@
-import { Button } from '@mui/material'
+import { Box, Button, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import axios from 'axios'
 import resourceUrl from '../../config/Config'
 import HeaderBuilder from '../../config/HeaderBuilder'
 import { useNavigate } from "react-router-dom";
+import { Inbox, Mail } from '@mui/icons-material'
+import EntityNameViewerFactory from '../../components/EntityNameViewerFactory'
 
 function Dashboard() {
 
@@ -13,17 +15,21 @@ function Dashboard() {
     const { isLoggedIn, setLoggedIn, userCache, setUserCache, jwtToken, setJwtToken } = useAuthContext()
     const headerBuilder = new HeaderBuilder()
 
-    useEffect(() => {
-        const entityEmail = localStorage.getItem("entityIdentifier")
-        const token = localStorage.getItem("token")
-        const entityType = localStorage.getItem("entityType")
-        const entityId = localStorage.getItem("entityId")
+    const entityEmail = localStorage.getItem("entityIdentifier")
+    const token = localStorage.getItem("token")
+    const entityType = localStorage.getItem("entityType")
+    const entityId = localStorage.getItem("entityId")
 
-        const initiallyFetchEntity = async () => {
+
+    useEffect(() => {
+
+        const httpEntityPolling = async () => {
 
             const headers = headerBuilder.addAuthorization(token).build()
 
-            axios.get(`${resourceUrl}/${entityType}/by/${entityEmail}/email`, { headers: headers })
+            const url = `${resourceUrl}/${entityType}/by/${entityEmail}/email`
+
+            axios.get(url, { headers: headers })
                 .then((response) => {
                     setUserCache(response.data)
                     localStorage.setItem("entityId", response.data.id)
@@ -33,7 +39,7 @@ function Dashboard() {
                 })
         }
 
-        initiallyFetchEntity()
+        httpEntityPolling()
     }, [])
 
 
@@ -45,12 +51,10 @@ function Dashboard() {
         navigate("/login")
     }
 
-
     return (
         <div>
-            Dashboard
             <br />
-            <p>{userCache.firstName}</p>
+            <EntityNameViewerFactory />
             <br />
             <Button color='error' variant='contained' onClick={onLogoutButtonClick}>
                 Logout
