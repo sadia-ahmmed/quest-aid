@@ -21,7 +21,7 @@ public class Organization {
 
     @NonNull
     @Column(nullable = false, unique = true)
-    private String organizationName;
+    private String name;
 
     @NonNull
     @Column(nullable = false, unique = true)

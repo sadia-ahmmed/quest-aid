@@ -22,12 +22,8 @@ public class Student {
     private Long id;
 
     @NonNull
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @NonNull
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(nullable = false)
+    private String name;
 
     @NonNull
     @Column(unique = true, nullable = false)
