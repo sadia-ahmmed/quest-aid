@@ -1,5 +1,6 @@
 package com.project.questaidbackend.helpers;
 
+import com.project.questaidbackend.models.Organization;
 import com.project.questaidbackend.models.enums.LoginEntityType;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
@@ -7,6 +8,7 @@ import com.project.questaidbackend.models.Student;
 import com.project.questaidbackend.models.base.LoginAttempt;
 import com.project.questaidbackend.services.interfaces.IAdminService;
 import com.project.questaidbackend.services.interfaces.IClubService;
+import com.project.questaidbackend.services.interfaces.IOrganizationService;
 import com.project.questaidbackend.services.interfaces.IStudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,7 @@ public class AuthFactory {
     private IAdminService adminService;
     private IClubService clubService;
     private IStudentService studentService;
+    private IOrganizationService organizationService;
 
     public LoginAttempt getAuthEntityDetails(LoginEntityType entityType, String email) {
         switch (entityType) {
@@ -32,6 +35,10 @@ public class AuthFactory {
             case STUDENT -> {
                 Student student = studentService.getStudentByEmail(email);
                 return new LoginAttempt(student.getEmail(), student.getPassword(), LoginEntityType.STUDENT);
+            }
+            case ORGANIZATION -> {
+                Organization organization = organizationService.getOrganizationByEmail(email);
+                return new LoginAttempt(organization.getEmail(), organization.getPassword(), LoginEntityType.ORGANIZATION);
             }
             default -> {
                 return null;

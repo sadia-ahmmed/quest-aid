@@ -21,7 +21,7 @@ public class ClubController {
 
     @GetMapping("/public/{id}")
     public ResponseEntity<Club> getClubDetails(@PathVariable Long id) {
-        return new ResponseEntity<>(clubService.getClub(id), HttpStatus.OK);
+        return new ResponseEntity<>(clubService.getClubById(id), HttpStatus.OK);
     }
 
     @GetMapping("/public/search/{clubName}")

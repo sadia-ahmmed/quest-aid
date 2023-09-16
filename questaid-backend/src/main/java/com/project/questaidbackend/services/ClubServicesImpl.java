@@ -6,6 +6,7 @@ import com.project.questaidbackend.models.ClubDepartment;
 import com.project.questaidbackend.repository.ClubRepository;
 import com.project.questaidbackend.services.interfaces.IClubDepartmentService;
 import com.project.questaidbackend.services.interfaces.IClubService;
+import com.project.questaidbackend.services.interfaces.ITreasuryService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,10 @@ public class ClubServicesImpl implements IClubService {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private ClubRepository clubRepository;
+
+
     private IClubDepartmentService clubDepartmentService;
+    private ITreasuryService treasuryService;
 
     @Override
     public Club getClubByName(String name) {
@@ -30,6 +34,7 @@ public class ClubServicesImpl implements IClubService {
         club.setPassword(bCryptPasswordEncoder.encode(club.getPassword()));
         Club savedClub = clubRepository.save(club);
 
+        treasuryService.createTreasuryForClub(savedClub);
         // create a General Department
         clubDepartmentService.addDepartment(new ClubDepartment(club, "General"), savedClub);
         return savedClub;
@@ -46,7 +51,7 @@ public class ClubServicesImpl implements IClubService {
     }
 
     @Override
-    public Club getClub(Long id) {
+    public Club getClubById(Long id) {
         Optional<Club> club = clubRepository.findById(id);
         return unwrapClub(club, id);
     }
@@ -59,7 +64,7 @@ public class ClubServicesImpl implements IClubService {
 
     @Override
     public ClubDepartment addDepartment(ClubDepartment department, Long clubId) {
-        Club club = getClub(clubId);
+        Club club = getClubById(clubId);
         return clubDepartmentService.addDepartment(department, club);
     }
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,11 +20,15 @@ public class Event {
     @Column
     private Long id;
 
-    @NonNull
-    @ManyToOne(optional = false, targetEntity = Club.class)
-    @JoinColumn(name = "organizer_id", referencedColumnName = "id")
+    @ManyToOne(targetEntity = Club.class)
+    @JoinColumn(name = "club_organizer_id", referencedColumnName = "id")
     @JsonIgnore
-    private Club organizer;
+    private Club clubOrganizer;
+
+    @ManyToOne(targetEntity = Organization.class)
+    @JoinColumn(name = "org_organizer_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Organization orgOrganizer;
 
     @NonNull
     @Column(nullable = false)
@@ -37,9 +42,29 @@ public class Event {
     @Column(nullable = false)
     private String eventType;
 
+    @NonNull
+    @Column
+    private LocalDate startDate;
+
+    @NonNull
+    @Column
+    private LocalDate endDate;
+
+
+    @Column(nullable = false)
+    private boolean approved = false;
 
     @OneToMany(mappedBy = "event", targetEntity = EventCollaborator.class)
-    @JsonIgnore
     private List<EventCollaborator> collaboratorList;
 
+//  TODO:  * many to many reln with student -> event participants
+    @ManyToMany
+    @JoinTable(
+            name = "participants",
+
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    @JsonIgnore
+    private List<Student> participants;
 }
