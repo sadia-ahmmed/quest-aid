@@ -1,21 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
-import Login from "./screens/login/Login";
+import { useAuthContext } from './context/AuthContext';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AppRouter from './router/AppRouter';
+import AuthRouter from './router/AuthRouter';
 import Navbar from './components/Navbar';
-import NewsFeed from './screens/student/newsfeed';
-import Feed from './screens/student/Feed';
 function App() {
-  return (
-      <div className="App">
-       <div className="bg-primary w-full overflow-hidden" style={{backgroundColor:"teal"  , borderBottomLeftRadius:5,borderBottomRightRadius:5, borderBottomColor:"teal", borderBottom: 10}}>
-        <Navbar />
-        </div > 
-        {/* <Login/> */}
-       <Feed/>
-        </div> 
 
-    
+  const { isLoggedIn, setLoggedIn, userCache, setUserCache, jwtToken, setJwtToken } = useAuthContext()
+
+  useEffect(() => {
+    const locallyStoredLoggedIn = localStorage.getItem("loggedIn")
+
+    if (locallyStoredLoggedIn) {
+      setLoggedIn(true)
+      setJwtToken(localStorage.getItem("token"))
+      setUserCache(localStorage.getItem("userIdentifier"))
+    }
+
+  }, [])
+
+  return (
+    <div className='App'>
+      <BrowserRouter>
+        {isLoggedIn ? <AppRouter /> : <AuthRouter />}
+      </BrowserRouter>
+    </div>
   );
 }
 

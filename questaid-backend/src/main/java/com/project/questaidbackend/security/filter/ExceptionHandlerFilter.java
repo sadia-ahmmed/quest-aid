@@ -1,7 +1,9 @@
 package com.project.questaidbackend.security.filter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.questaidbackend.exceptions.EntityNotFoundException;
+import com.project.questaidbackend.models.base.GeneralResponseData;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,15 +19,18 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } catch (JWTVerificationException e) {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.getWriter().write("JWT NOT VALID");
+            GeneralResponseData generalResponseData = new GeneralResponseData("JWT NOT VALID", response.getStatus());
+            response.getWriter().write(new ObjectMapper().writeValueAsString(generalResponseData));
             response.getWriter().flush();
         } catch (EntityNotFoundException e) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().write("Email doesn't exist");
+            GeneralResponseData generalResponseData = new GeneralResponseData("Email doesn't exist", response.getStatus());
+            response.getWriter().write(new ObjectMapper().writeValueAsString(generalResponseData));
             response.getWriter().flush();
         } catch (RuntimeException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("BAD REQUEST");
+            GeneralResponseData generalResponseData = new GeneralResponseData("Bad Request", response.getStatus());
+            response.getWriter().write(new ObjectMapper().writeValueAsString(generalResponseData));
             response.getWriter().flush();
         }
     }

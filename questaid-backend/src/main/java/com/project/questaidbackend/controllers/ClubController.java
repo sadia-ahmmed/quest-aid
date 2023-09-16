@@ -24,6 +24,11 @@ public class ClubController {
         return new ResponseEntity<>(clubService.getClubById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/by/{email}/email")
+    public ResponseEntity<Club> getClubByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(clubService.getClubByEmail(email), HttpStatus.OK);
+    }
+
     @GetMapping("/public/search/{clubName}")
     public ResponseEntity<Club> getClubByName(@PathVariable String name){
         return new ResponseEntity<>(clubService.getClubByName(name), HttpStatus.OK);
