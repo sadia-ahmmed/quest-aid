@@ -1,6 +1,5 @@
 package com.project.questaidbackend.models.base;
 
-
 import com.project.questaidbackend.models.ClubMember;
 import lombok.*;
 
@@ -9,20 +8,8 @@ import lombok.*;
 @Setter
 public class ResponseClubMember {
 
-    public ResponseClubMember(ClubMember clubMember) {
-        this.firstName = clubMember.getStudent().getFirstName();
-        this.lastName = clubMember.getStudent().getLastName();
-        this.email = clubMember.getClub().getEmail();
-        this.phone = clubMember.getClub().getPhone();
-        this.clubMemberRoles = clubMember.getClubMemberRoles().toString();
-        this.departmentName = clubMember.getClubDepartment().getDepartmentName();
-    }
-
     @NonNull
-    private String firstName;
-
-    @NonNull
-    private String lastName;
+    private String name;
 
     @NonNull
     private String email;
@@ -36,5 +23,12 @@ public class ResponseClubMember {
     @NonNull
     private String departmentName;
 
+    public ResponseClubMember(ClubMember clubMember) {
+        this.name = clubMember.getStudent().getName();
+        this.email = clubMember.getClub().getEmail();
+        this.phone = clubMember.getClub().getPhone();
+        this.clubMemberRoles = clubMember.getClubMemberRoles().toString();
+        this.departmentName = clubMember.getClubDepartment().getDepartmentName();
+    }
 
 }

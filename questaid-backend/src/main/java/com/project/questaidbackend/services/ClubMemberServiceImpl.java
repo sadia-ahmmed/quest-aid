@@ -51,9 +51,10 @@ public class ClubMemberServiceImpl implements IClubMemberService {
         ClubMember clubMember = new ClubMember(
                 student,
                 club,
-                club.getClubDepartments().stream().filter(clubDepartment -> clubDepartment.getDepartmentName().equals("General")).findFirst().get(),
-                ClubMemberRoles.GENERAL_MEMBER
-        );
+                club.getClubDepartments().stream()
+                        .filter(clubDepartment -> clubDepartment.getDepartmentName().equals("General")).findFirst()
+                        .get(),
+                ClubMemberRoles.GENERAL_MEMBER);
 
         return clubMemberRepository.save(clubMember);
     }
@@ -62,13 +63,13 @@ public class ClubMemberServiceImpl implements IClubMemberService {
     public ClubMember changeDepartment(Long oldDepartmentId, Long newDepartmentId, Long clubMemberId) {
         ClubDepartment clubDepartment = clubDepartmentService.getClubDepartment(oldDepartmentId);
         ClubMember existingClubMember = unwrapClubMember(
-                clubDepartment.getClubMemberList().stream().filter(clubMember -> clubMember.getId().equals(clubMemberId)).findFirst(),
-                clubMemberId
-        );
+                clubDepartment.getClubMemberList().stream()
+                        .filter(clubMember -> clubMember.getId().equals(clubMemberId)).findFirst(),
+                clubMemberId);
 
         existingClubMember.setClubDepartment(clubDepartmentService.getClubDepartment(newDepartmentId));
 
-        System.out.println(existingClubMember.getStudent().getFirstName());
+        System.out.println(existingClubMember.getStudent().getName());
 
         return clubMemberRepository.save(existingClubMember);
     }
@@ -81,8 +82,10 @@ public class ClubMemberServiceImpl implements IClubMemberService {
     }
 
     static ClubMember unwrapClubMember(Optional<ClubMember> entity, Long id) {
-        if(entity.isPresent()) return entity.get();
-        else throw new EntityNotFoundException(id, ClubMember.class);
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new EntityNotFoundException(id, ClubMember.class);
     }
 
 }

@@ -7,8 +7,6 @@ import com.project.questaidbackend.models.ClubMember;
 import com.project.questaidbackend.models.base.ResponseClubMember;
 import com.project.questaidbackend.repository.ClubDepartmentRepository;
 import com.project.questaidbackend.services.interfaces.IClubDepartmentService;
-import com.project.questaidbackend.services.interfaces.IClubMemberService;
-import com.project.questaidbackend.services.interfaces.IClubService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,20 +37,18 @@ public class ClubDepartmentServicesImpl implements IClubDepartmentService {
         List<ClubMember> clubMemberList = getClubDepartment(departmentId).getClubMemberList();
         return clubMemberList.stream().map(
                 clubMember -> new ResponseClubMember(
-                    clubMember.getStudent().getFirstName(),
-                    clubMember.getStudent().getLastName(),
-                    clubMember.getStudent().getEmail(),
-                    clubMember.getStudent().getPhone(),
-                    clubMember.getClubMemberRoles().toString(),
-                    clubMember.getClubDepartment().getDepartmentName()
-                )
-        ).collect(Collectors.toList());
+                        clubMember.getStudent().getName(),
+                        clubMember.getStudent().getEmail(),
+                        clubMember.getStudent().getPhone(),
+                        clubMember.getClubMemberRoles().toString(),
+                        clubMember.getClubDepartment().getDepartmentName()))
+                .collect(Collectors.toList());
     }
 
-
-
     static ClubDepartment unwrapClubDepartment(Optional<ClubDepartment> entity, Long id) {
-        if (entity.isPresent()) return entity.get();
-        else throw new EntityNotFoundException(id, ClubDepartment.class);
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new EntityNotFoundException(id, ClubDepartment.class);
     }
 }

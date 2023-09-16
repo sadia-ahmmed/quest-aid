@@ -13,6 +13,9 @@ const MessageSender: React.FC<MessageSenderProps> = () => {
   const [input, setInput] = useState<string>('');
   const [inputContent, setInputContent] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
+  const token = localStorage.getItem("token")
+  const entityType = localStorage.getItem("entityType")
+  const entityId = localStorage.getItem("entityId")
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,8 +47,17 @@ const MessageSender: React.FC<MessageSenderProps> = () => {
 
         </form>
       </div>
-
+      
       <div className="messageSender_bottom flex justify-between mt-3">
+        {
+          entityType==="organization" ? <>
+          </>
+          :
+          <>
+          
+          </>
+
+        }
         <div className="messageSender_option flex items-center">
           <VideocamIcon style={{ color: 'red' }} />
           <h3 className="ml-2 text-medium cursor-pointer">Privacy</h3>
