@@ -26,6 +26,10 @@ public class AdminController {
         return new ResponseEntity<>(adminService.createAdmin(admin), HttpStatus.CREATED);
     }
 
+    @GetMapping("/by/{email}/email")
+    public ResponseEntity<Admin> getAdminByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(adminService.getAdminByEmail(email), HttpStatus.OK);
+    }
 
     @PostMapping("/add/club")
     public ResponseEntity<Club> createClub(@Valid @RequestBody Club club) {

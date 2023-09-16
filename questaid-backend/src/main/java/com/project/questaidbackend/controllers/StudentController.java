@@ -20,6 +20,11 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getStudentById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/by/{email}/email")
+    public ResponseEntity<Student> getStudentByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(studentService.getStudentByEmail(email), HttpStatus.OK);
+    }
+
 
     @PostMapping("/register")
     public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
