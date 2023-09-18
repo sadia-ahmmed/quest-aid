@@ -21,4 +21,6 @@ class HeaderBuilder {
 
 }
 
-export default HeaderBuilder
+const headerBuilder = new HeaderBuilder()
+
+export { HeaderBuilder, headerBuilder }

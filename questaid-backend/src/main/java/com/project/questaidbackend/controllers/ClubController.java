@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,6 +40,11 @@ public class ClubController {
         Map<String, Double> jsonMap = new HashMap<>();
         jsonMap.put("clubProductivity", taskService.getProductivityByClub(clubId));
         return new ResponseEntity<>(jsonMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/view-under/{adminId}/admin")
+    public ResponseEntity<List<Club>> getAllClubsUnderAdminId(@PathVariable Long adminId) {
+        return new ResponseEntity<>(clubService.getAllClubsUnderAdminId(adminId), HttpStatus.OK);
     }
 
 }

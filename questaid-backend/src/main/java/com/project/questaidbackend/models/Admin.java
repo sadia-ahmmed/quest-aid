@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "admins")
 @RequiredArgsConstructor
@@ -17,6 +19,11 @@ public class Admin {
     @Column(nullable = false)
     private Long id;
 
+    @NotBlank(message = "Name cannot be blank")
+    @NonNull
+    @Column(nullable = false, unique = true)
+    private String name;
+
     @NotBlank(message = "Email cannot be blank")
     @NonNull
     @Column(nullable = false, unique = true)
@@ -27,4 +34,6 @@ public class Admin {
     @Column(nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "assignedAdmin", cascade = CascadeType.ALL, targetEntity = Club.class)
+    private List<Club> assignedAdmin;
 }
