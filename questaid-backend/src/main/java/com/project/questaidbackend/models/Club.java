@@ -1,6 +1,7 @@
 package com.project.questaidbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.questaidbackend.models.aggregate.SocialLinks;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,6 +40,12 @@ public class Club {
     @NonNull
     @Column(unique = true, nullable = false)
     private String phone;
+
+
+    @ManyToOne(optional = false, targetEntity = Admin.class)
+    @JoinColumn(name = "assigned_admin", referencedColumnName = "id")
+    @JsonIgnoreProperties({"password", "assignedAdmin"})
+    private Admin assignedAdmin;
 
     // * a one-to-many mapping to club members class
     @JsonIgnore
