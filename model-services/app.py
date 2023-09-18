@@ -1,11 +1,14 @@
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify
+from routes.announcement_api import announcement_api
+from routes.chatbot_api import chatbot_api
+from pyspark.sql import SparkSession
 
 app = Flask(__name__)
+spark = SparkSession.builder.appName("Recommender").getOrCreate()
 
+app.register_blueprint(announcement_api)
+app.register_blueprint(chatbot_api)
 
-@app.route('/', methods=["GET"])
-def test_hello():
-    return jsonify({"message": "Hello World"})
 
 @app.errorhandler(404)
 def not_found():
