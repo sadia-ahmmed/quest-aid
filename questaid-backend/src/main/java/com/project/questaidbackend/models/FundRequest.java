@@ -22,7 +22,6 @@ public class FundRequest {
 
     @ManyToOne(optional = false, targetEntity = Club.class)
     @JoinColumn(referencedColumnName = "id")
-    @JsonIgnore
     private Club requester;
 
     @ManyToOne(optional = false, targetEntity = Admin.class)

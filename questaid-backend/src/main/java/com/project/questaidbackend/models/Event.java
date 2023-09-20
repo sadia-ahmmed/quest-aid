@@ -35,7 +35,7 @@ public class Event {
     private String eventName;
 
     @NonNull
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String eventDescription;
 
     @NonNull

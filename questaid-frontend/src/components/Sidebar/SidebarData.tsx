@@ -18,7 +18,7 @@ export interface SidebarItem {
 export const ClubSidebarData: SidebarItem[] = [
   {
     title: "Dashboard",
-    path: "/",
+    path: "/dashboard",
     icon: <HomeIcon />,
     cName: "nav-text",
   },
@@ -42,13 +42,13 @@ export const ClubSidebarData: SidebarItem[] = [
   },
   {
     title: "Announcements",
-    path: "/announcements",
+    path: "/club/announcement/create",
     icon: <EmailIcon />,
     cName: "nav-text",
   },
   {
     title: "Events",
-    path: "/events",
+    path: "/club/events",
     icon: <EventIcon />,
     cName: "nav-text",
   },
@@ -56,6 +56,47 @@ export const ClubSidebarData: SidebarItem[] = [
     title: "Recruitement",
     path: "/recruitment",
     icon: < PersonAddAlt1Icon />,
+    cName: "nav-text",
+  },
+];
+
+
+export const AdminSidebarData: SidebarItem[] = [
+  {
+    title: "Dashboard",
+    path: "/dashboard",
+    icon: <HomeIcon />,
+    cName: "nav-text",
+  },
+  {
+    title: "Treasurey",
+    path: "/admin/treasury",
+    icon: <AccountBalanceIcon />,
+    cName: "nav-text",
+  },
+  {
+    title: "Add a Club",
+    path: "/admin/create-club",
+    icon: < PersonAddAlt1Icon />,
+    cName: "nav-text",
+  },
+  {
+    title: "Clubs",
+    path: "/admin/clubs",
+    icon: <ShoppingCartIcon />,
+    cName: "nav-text",
+  },
+  {
+    title: "Members",
+    path: "/team",
+    icon: <PeopleAltIcon />,
+    cName: "nav-text",
+  },
+
+  {
+    title: "Events",
+    path: "/events",
+    icon: <EventIcon />,
     cName: "nav-text",
   },
 ];

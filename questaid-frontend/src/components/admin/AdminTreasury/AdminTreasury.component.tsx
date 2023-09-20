@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { resourceUrl } from '../../../config/Config'
 import axios from 'axios'
 import { Box, Card, CardContent, Grid, Stack, Typography } from '@mui/material'
+import FundRequestCard from '../../general/FundRequestCard'
 
 export const AdminTreasury = () => {
 
@@ -80,11 +81,11 @@ export const AdminTreasury = () => {
                     Incoming Fund Requests
                 </Typography>
             </Box>
-            <ul>
-                {requests.map((request: any) => {
-                    return <li key={request.id}>{ } - {request.requestedFund}</li>
-                })}
-            </ul>
+            <div style={{ marginLeft: 300, width: 1125 }}>
+                {requests.length > 0 ? requests.map((request: any) => {
+                    return <FundRequestCard key={request.id} requestAmount={request.requestedFund} requesterId={request.id} requesterName={request.requester.clubName} />
+                }) : "No requests"}
+            </div>
         </Stack>
 
     )

@@ -33,7 +33,7 @@ function Dashboard() {
         const loadLogo = (filename: string) => {
             const url = `${resourceUrl}/files/load/logo/${filename}`
 
-            axios.get(url, { headers: headers })
+            axios.get(url)
                 .then((response) => {
                     setImage(response.data)
                 })
@@ -46,7 +46,7 @@ function Dashboard() {
         const httpEntityPolling = () => {
             const url = `${resourceUrl}/${entityType}/by/${entityEmail}/email`
 
-            axios.get(url, { headers: headers })
+            axios.get(url)
                 .then((response) => {
                     setUserCache(response.data)
                     localStorage.setItem("entityId", response.data.id)
@@ -74,7 +74,6 @@ function Dashboard() {
 
     return (
         <div>
-            <Sidebar />
             {image ? <ImageDisplay imageData={image} /> : <p>No image</p>}
             <br />
             {userCache && <EntityNameViewerFactory />}

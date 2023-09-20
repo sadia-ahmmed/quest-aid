@@ -34,4 +34,11 @@ public interface IFundRequestService {
      * @return
      */
     List<FundRequest> getFundByStatus(boolean status);
+
+    /**
+     * Change the status of the fund
+     * @param status
+     * @return
+     */
+    void changeFundStatus(Long fundId, boolean status);
 }

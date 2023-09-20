@@ -22,6 +22,12 @@ public class FundRequestController {
         return new ResponseEntity<>(fundRequestService.addFundRequest(fundRequest, clubId, adminId), HttpStatus.CREATED);
     }
 
+    @PostMapping("/change/{fundId}/{status}")
+    public ResponseEntity<FundRequest> changeFundStatus(@PathVariable Long fundId, @PathVariable boolean status) {
+        fundRequestService.changeFundStatus(fundId, status);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/get/all/{clubId}/club")
     public ResponseEntity<List<FundRequest>> getAllFundRequestsByClubId(@PathVariable Long clubId) {
         return new ResponseEntity<>(fundRequestService.getAllFundRequestsByClubId(clubId), HttpStatus.OK);
