@@ -4,7 +4,7 @@ import LoginPage from '../pages/Login'
 import SignUp from '../pages/Signup'
 import NotFound from '../pages/NotFound'
 import AdminLogin from '../pages/AdminLogin'
-
+import Dashboard from '../pages/Dashboard'
 function AuthRouter() {
     return (
         <Routes>
@@ -12,6 +12,7 @@ function AuthRouter() {
             <Route path='/login/admin' element={<AdminLogin />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='*' element={<NotFound />} />
+            <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
     )
 }

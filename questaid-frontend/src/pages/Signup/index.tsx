@@ -9,25 +9,15 @@ function SignUp() {
     const context = useAuthContext()
     const navigate = useNavigate()
 
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
+
     const [errorMessage, setErrorMessage] = useState("")
-    const [phone, setphone] = useState("")
-    const [name, setname] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [entityType, setEntityType] = useState("STUDENT")
-    const onInputText = (event: any, setState: any) => {
-        setState(event.target.value)
-    }
-
-
-    const onSignupSubmit = (event: any) => {
-        event.preventDefault()
-
-        setIsLoading(true)
-
-
-    }
+    
     const entityChoiceItems = [
         "STUDENT",
         "ORGANIZATION"
@@ -36,6 +26,36 @@ function SignUp() {
         "STUDENT",
         "ORGANIZATION"
     ]
+    
+    
+    const onInputText = (event: any, setState: any) => {
+        setState(event.target.value)
+    }
+
+
+    const onSignupSubmit = (event: any) => {
+        event.preventDefault()
+        setIsLoading(true)
+
+        const body = {
+            name, email, password, phone
+        }
+
+        const url = `${resourceUrl}/${entityType.toLowerCase()}/register`
+        
+        axios.post(url, body).then((response) => {
+            if(response.status === 201) {
+                alert("Account successfully created")
+                navigate("/login")
+                setIsLoading(false)
+            }
+        }).catch((error) => {
+            console.log(error)
+            alert("Error creating account")
+            setIsLoading(false)
+        })
+
+    }
 
 
     return (
@@ -64,7 +84,7 @@ function SignUp() {
                                     placeholder="Enter name"
                                     value={name}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    onChange={(event) => onInputText(event, setEmail)}
+                                    onChange={(event) => onInputText(event, setName)}
                                 />
                             </div>
                         </div>
@@ -92,7 +112,7 @@ function SignUp() {
                                     placeholder="Enter contact number"
                                     value={phone}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    onChange={(event) => onInputText(event, setEmail)}
+                                    onChange={(event) => onInputText(event, setPhone)}
                                 />
                             </div>
                         </div>

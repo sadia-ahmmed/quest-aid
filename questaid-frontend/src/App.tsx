@@ -25,6 +25,7 @@ const App = () => {
   return (
     <div className='App'>
       <BrowserRouter>
+      <Navbar/>
         {isLoggedIn ? <AppRouter /> : <AuthRouter />}
       </BrowserRouter>
     </div>

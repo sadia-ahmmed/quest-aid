@@ -6,8 +6,10 @@ import { resourceUrl } from '../../config/Config'
 import { HeaderBuilder } from '../../config/HeaderBuilder'
 import { useNavigate } from "react-router-dom";
 import { Inbox, Mail } from '@mui/icons-material'
-import EntityNameViewerFactory from '../../middleware/factories/EntityNameViewerFactory'
+import Sidebar from '../../components/Sidebar/index'
 import ImageDisplay from '../../components/general/ImageDisplay/ImageDisplay.component'
+import EntityNameViewerFactory from '../../middleware/factories/EntityNameViewerFactory'
+
 
 function Dashboard() {
 
@@ -72,6 +74,7 @@ function Dashboard() {
 
     return (
         <div>
+            <Sidebar />
             {image ? <ImageDisplay imageData={image} /> : <p>No image</p>}
             <br />
             {userCache && <EntityNameViewerFactory />}

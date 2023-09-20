@@ -50,13 +50,13 @@ const MessageSender: React.FC<MessageSenderProps> = () => {
 
       <div className="messageSender_bottom flex justify-between mt-3">
         {
-          entityType === "organization" ? <>
-          </>
+          entityType === "organization" ?
+            <>
+            </>
             :
             <>
 
             </>
-
         }
         <div className="messageSender_option flex items-center">
           <VideocamIcon style={{ color: 'red' }} />
