@@ -8,9 +8,9 @@ function EntityNameViewerFactory() {
 
     return (
         <p>
-            {entityType === "student" && `${userCache.firstName} ${userCache.lastName}`}
+            {entityType === "student" && `${userCache.name}`}
             {entityType === "club" && `${userCache.clubName}`}
-            {entityType === "organization" && `${userCache.organizationName}`}
+            {entityType === "organization" && `${userCache.name}`}
         </p>
     )
 }

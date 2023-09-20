@@ -50,7 +50,8 @@ const MessageSender: React.FC<MessageSenderProps> = () => {
       
       <div className="messageSender_bottom flex justify-between mt-3">
         {
-          entityType==="organization" ? <>
+          entityType === "organization" ?
+           <>
           </>
           :
           <>

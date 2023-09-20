@@ -4,6 +4,7 @@ import { useAuthContext } from './context/AuthContext';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppRouter from './router/AppRouter';
 import AuthRouter from './router/AuthRouter';
+import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+      <Navbar/>
+      <Sidebar/>
         {isLoggedIn ? <AppRouter /> : <AuthRouter />}
       </BrowserRouter>
     </div>
