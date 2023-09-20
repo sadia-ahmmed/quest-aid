@@ -3,11 +3,13 @@ import React, { useEffect } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import axios from 'axios'
 import resourceUrl from '../../config/Config'
-import { HeaderBuilder } from '../../config/HeaderBuilder'
+import {HeaderBuilder} from '../../config/HeaderBuilder'
 import { useNavigate } from "react-router-dom";
 import { Inbox, Mail } from '@mui/icons-material'
 import EntityNameViewerFactory from '../../components/EntityNameViewerFactory'
-import Sidebar from '../../components/Sidebar'
+import Sidebar from '../../components/Sidebar/index'
+
+
 function Dashboard() {
 
     const navigate = useNavigate()
