@@ -25,7 +25,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
       <Navbar/>
-      <Sidebar/>
+      
         {isLoggedIn ? <AppRouter /> : <AuthRouter />}
       </BrowserRouter>
     </div>

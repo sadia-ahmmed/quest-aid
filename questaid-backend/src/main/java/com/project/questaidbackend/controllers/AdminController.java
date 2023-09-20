@@ -1,15 +1,20 @@
 package com.project.questaidbackend.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.services.interfaces.IAdminService;
 import com.project.questaidbackend.services.interfaces.IClubService;
+import com.project.questaidbackend.services.interfaces.IFileStorageService;
 import com.project.questaidbackend.services.interfaces.IStudentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @AllArgsConstructor
@@ -31,9 +36,20 @@ public class AdminController {
         return new ResponseEntity<>(adminService.getAdminByEmail(email), HttpStatus.OK);
     }
 
-    @PostMapping("/add/club")
-    public ResponseEntity<Club> createClub(@Valid @RequestBody Club club) {
-        return new ResponseEntity<>(clubService.createClub(club), HttpStatus.CREATED);
+    @PostMapping("/add/club/{adminId}")
+    public ResponseEntity<Club> createClub(
+            @RequestParam("club") String stringClub,
+            @RequestParam("file") MultipartFile file,
+            @PathVariable Long adminId
+    ) {
+        Club club;
+        try {
+            club = new ObjectMapper().readValue(stringClub, Club.class);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading object");
+        }
+        Admin admin = adminService.getAdminById(adminId);
+        return new ResponseEntity<>(clubService.createClub(club, file, admin), HttpStatus.CREATED);
     }
 
     @PutMapping("/verify/{id}/student/{status}")

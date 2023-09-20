@@ -1,16 +1,20 @@
 package com.project.questaidbackend.services;
 
 import com.project.questaidbackend.exceptions.EntityNotFoundException;
+import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.ClubDepartment;
 import com.project.questaidbackend.repository.ClubRepository;
 import com.project.questaidbackend.services.interfaces.IClubDepartmentService;
 import com.project.questaidbackend.services.interfaces.IClubService;
+import com.project.questaidbackend.services.interfaces.IFileStorageService;
 import com.project.questaidbackend.services.interfaces.ITreasuryService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,9 +24,9 @@ public class ClubServicesImpl implements IClubService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private ClubRepository clubRepository;
 
-
     private IClubDepartmentService clubDepartmentService;
     private ITreasuryService treasuryService;
+    private IFileStorageService fileStorageService;
 
     @Override
     public Club getClubByName(String name) {
@@ -30,8 +34,17 @@ public class ClubServicesImpl implements IClubService {
     }
 
     @Override
-    public Club createClub(Club club) {
+    public Club createClub(Club club, MultipartFile file, Admin admin) {
         club.setPassword(bCryptPasswordEncoder.encode(club.getPassword()));
+        club.setAssignedAdmin(admin);
+
+        try {
+            String filepath = fileStorageService.save(file, "logo");
+            club.setClubLogoPath(filepath);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
         Club savedClub = clubRepository.save(club);
 
         treasuryService.createTreasuryForClub(savedClub);
@@ -48,6 +61,11 @@ public class ClubServicesImpl implements IClubService {
     @Override
     public void modifyClub(Club club) {
 //        clubRepository.updateClub(club.getClubName(), club.getClubLogoPath(), club.getId());
+    }
+
+    @Override
+    public List<Club> getAllClubsUnderAdminId(Long id) {
+        return clubRepository.findByAssignedAdminId(id);
     }
 
     @Override

@@ -5,7 +5,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EmailIcon from "@mui/icons-material/Email";
 import HelpIcon from "@mui/icons-material/Help";
-
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import EventIcon from '@mui/icons-material/Event';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 export interface SidebarItem {
   title: string;
   path: string;
@@ -13,41 +15,47 @@ export interface SidebarItem {
   cName: string;
 }
 
-export const SidebarData: SidebarItem[] = [
+export const ClubSidebarData: SidebarItem[] = [
   {
-    title: "Home",
+    title: "Dashboard",
     path: "/",
     icon: <HomeIcon />,
     cName: "nav-text",
   },
   {
-    title: "Reports",
+    title: "Treasurey",
     path: "/reports",
-    icon: <AssignmentIcon />,
+    icon: <AccountBalanceIcon />,
     cName: "nav-text",
   },
   {
-    title: "Products",
-    path: "/products",
+    title: "Departments",
+    path: "/announcements",
     icon: <ShoppingCartIcon />,
     cName: "nav-text",
   },
   {
-    title: "Team",
+    title: "Members",
     path: "/team",
     icon: <PeopleAltIcon />,
     cName: "nav-text",
   },
   {
-    title: "Messages",
-    path: "/",
+    title: "Announcements",
+    path: "/announcements",
     icon: <EmailIcon />,
     cName: "nav-text",
   },
   {
-    title: "Support",
-    path: "/support",
-    icon: <HelpIcon />,
+    title: "Events",
+    path: "/events",
+    icon: <EventIcon />,
+    cName: "nav-text",
+  },
+  {
+    title: "Recruitement",
+    path: "/recruitment",
+    icon: < PersonAddAlt1Icon />,
     cName: "nav-text",
   },
 ];

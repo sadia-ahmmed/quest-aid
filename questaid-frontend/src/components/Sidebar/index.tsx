@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 
 // DATA FILE
-import { SidebarData } from "./SidebarData";
+import { ClubSidebarData } from "./SidebarData";
 
 // STYLES
 import "./Sidebar.css";
@@ -23,7 +23,7 @@ interface SidebarItem {
   cName: string;
 }
 
-export default function Navbar(props: NavbarProps): JSX.Element {
+export default function Sidebar(props: NavbarProps): JSX.Element {
   const [sidebar, setSidebar] = useState(true);
 
   const showSidebar = () => setSidebar(true);
@@ -38,7 +38,7 @@ export default function Navbar(props: NavbarProps): JSX.Element {
               </Link>
             </li> */}
 
-            {SidebarData.map((item: SidebarItem, index: number) => {
+            {ClubSidebarData.map((item: SidebarItem, index: number) => {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
