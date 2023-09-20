@@ -37,7 +37,7 @@ const ClubCard: React.FC<IClubCardProps> = ({ clubId, clubName, clubEvents, club
 
 
     return (
-        <Card className="w-72 shadow-md rounded-lg overflow-hidden flex items-center" sx={{ padding: 2, margin: 1, width: 500 }}>
+        <Card className="w-72 shadow-md rounded-lg overflow-hidden flex items-center" sx={{ padding: 2, margin: 1, width: 700 }}>
             <Avatar sx={{ width: 90, height: 90 }}>
                 <img
                     src={`data:image/jpeg;base64,${img}`}

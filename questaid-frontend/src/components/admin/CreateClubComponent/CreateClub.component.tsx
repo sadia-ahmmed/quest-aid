@@ -56,12 +56,12 @@ function CreateClubComponent() {
 
 
     return (
-        <form className="space-y-6" onSubmit={onCreateClub} >
+        <form onSubmit={onCreateClub} >
             <div className="flex justify-center items-center h-screen">
-                <div className="w-1/2 bg-white flex flex-col justify-center px-6 py-12 lg:px-8" >
-                    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"  >
+                <div className="w-1/2 bg-white flex flex-col justify-center" >
+                    <div className="sm:mx-auto sm:w-full sm:max-w-sm"  >
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900" style={{ marginLeft: -300 }}>
+                            <label htmlFor="email" className="block text-sm font-medium leading-12 text-gray-900" style={{ marginLeft: -300 }}>
                                 Club name
                             </label>
                             <div className="mt-2">

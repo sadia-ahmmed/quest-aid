@@ -4,6 +4,7 @@ import axios from 'axios'
 import { headerBuilder } from '../../../config/HeaderBuilder'
 import ClubCard from '../../general/ClubCard/ClubCard.component'
 import { Typography } from '@mui/material'
+import { margin } from '@mui/system'
 
 const ClubListComponent = () => {
 
@@ -21,7 +22,7 @@ const ClubListComponent = () => {
         // console.log(url)
 
         const fetchAllClubsUnderMeAdmin = () => {
-            axios.get(url, { headers: headers })
+            axios.get(url)
                 .then((response) => {
                     setClubs(response.data)
                     setIsLoading(false)
@@ -39,10 +40,11 @@ const ClubListComponent = () => {
     }
 
     return (
-        <div>
+        <div style={{ marginLeft: 300 }}>
             <h2 className="mt-12 text-3xl font-bold tracking-tight text-teal-800 flex">
                 Clubs
             </h2>
+            <br />
             {clubs.map((club: any) => (
                 <ClubCard key={club.id} clubId={club.id} clubName={club.clubName} clubEvents={club.events.length} clubAvatarPath={club.avatarPath} treasuryId={club.treasury.id} />
             ))}

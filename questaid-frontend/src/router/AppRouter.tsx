@@ -8,25 +8,39 @@ import { CreateAnnouncement } from '../components/club/CreateAnnoucement/CreateA
 import ClubListComponent from '../components/admin/ClubListComponent/ClubListComponent.component';
 import ClubTreasuryHistory from '../components/admin/ClubTreasuryHistory/ClubTreasuryHistory.component';
 import { AdminTreasury } from '../components/admin/AdminTreasury/AdminTreasury.component';
+import Sidebar from '../components/Sidebar';
+import EventComponent from '../components/club/EventComponent/EventComponent.component';
+import CreateEvent from '../components/club/CreateEvent/CreateEvent.component';
+import EventPublicPage from '../pages/EventPublicPage';
 
 function AppRouter() {
 
     const entityType = localStorage.getItem("entityType")
 
     return (
-        <Routes>
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='*' element={<NotFound />} />
+        <>
+            {/* TODO: fix global route problem */}
+            <Routes>
+                <Route path='/event/public/:id' element={<EventPublicPage />} />
+            </Routes>
+            <Sidebar />
+            <Routes>
+                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='*' element={<NotFound />} />
 
-            {entityType === "club" && <Route path='/club/announcement/create' element={<CreateAnnouncement />} />}
+                {/* CLUB ROUTES */}
+                {entityType === "club" && <Route path='/club/announcement/create' element={<CreateAnnouncement />} />}
+                {entityType === "club" && <Route path='/club/events' element={<EventComponent />} />}
+                {entityType === "club" && <Route path='/club/event/create' element={<CreateEvent />} />}
 
-            {/* ADMIN ROUTES */}
-            {entityType === "admin" && <Route path='/admin/create-club' element={<CreateClubComponent />} />}
-            {entityType === "admin" && <Route path='/admin/verify/students' element={<StudentListComponent />} />}
-            {entityType === "admin" && <Route path='/admin/clubs' element={<ClubListComponent />} />}
-            {entityType === "admin" && <Route path='/admin/club/:cid/treasury/:tid' element={<ClubTreasuryHistory />} />}
-            {entityType === "admin" && <Route path='/admin/treasury' element={<AdminTreasury />} />}
-        </Routes>
+                {/* ADMIN ROUTES */}
+                {entityType === "admin" && <Route path='/admin/create-club' element={<CreateClubComponent />} />}
+                {entityType === "admin" && <Route path='/admin/verify/students' element={<StudentListComponent />} />}
+                {entityType === "admin" && <Route path='/admin/clubs' element={<ClubListComponent />} />}
+                {entityType === "admin" && <Route path='/admin/club/:cid/treasury/:tid' element={<ClubTreasuryHistory />} />}
+                {entityType === "admin" && <Route path='/admin/treasury' element={<AdminTreasury />} />}
+            </Routes>
+        </>
     )
 }
 
