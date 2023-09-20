@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { clearStates, onInputText } from '../../middleware/functions/utils'
-import resourceUrl from '../../config/Config'
+import { clearStates, onInputText } from '../../../middleware/functions/utils'
+import { resourceUrl } from '../../../config/Config'
 import axios from 'axios'
-import { headerBuilder } from '../../config/HeaderBuilder'
+import { headerBuilder } from '../../../config/HeaderBuilder'
 
 function CreateClubComponent() {
 
@@ -32,8 +32,6 @@ function CreateClubComponent() {
             clubName, email, password, phone
         })
 
-        console.table(body)
-        console.log(entityId)
 
         const formData = new FormData()
         formData.append("club", body);

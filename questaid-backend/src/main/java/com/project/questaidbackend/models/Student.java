@@ -38,11 +38,11 @@ public class Student {
     private String phone;
 
     @Column
-    private String avatar;
+    private String avatarPath;
 
     @NonNull
     @Column(nullable = false)
-    private boolean verified = false;
+    private boolean verified = true;
 
     // * a one-to-many mapping to club members class
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, targetEntity = ClubMember.class)

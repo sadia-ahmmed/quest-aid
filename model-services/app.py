@@ -2,9 +2,12 @@ from flask import Flask, jsonify
 from routes.announcement_api import announcement_api
 from routes.chatbot_api import chatbot_api
 from pyspark.sql import SparkSession
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-spark = SparkSession.builder.appName("Recommender").getOrCreate()
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+# spark = SparkSession.builder.appName("Recommender").getOrCreate()
 
 app.register_blueprint(announcement_api)
 app.register_blueprint(chatbot_api)

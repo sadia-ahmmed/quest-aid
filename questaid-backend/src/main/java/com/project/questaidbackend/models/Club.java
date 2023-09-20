@@ -26,8 +26,8 @@ public class Club {
     private String clubName;
 
     @NonNull
-    @Column(name = "club_logo_path")
-    private String clubLogoPath;
+    @Column
+    private String avatarPath;
 
     @NonNull
     @Column(unique = true, nullable = false)
@@ -80,5 +80,10 @@ public class Club {
     @OneToMany(mappedBy = "announcer", cascade = CascadeType.ALL, targetEntity = Announcement.class)
     @JsonIgnore
     private List<Announcement> announcements;
+
+
+    @OneToMany(mappedBy = "requester", cascade = CascadeType.ALL, targetEntity = FundRequest.class)
+    @JsonIgnore
+    private List<FundRequest> fundRequests;
 
 }

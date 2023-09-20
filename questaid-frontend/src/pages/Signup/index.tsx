@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import resourceUrl from '../../config/Config'
-import Dropdown from '../../components/Dropdown'
+import { resourceUrl } from '../../config/Config'
+import Dropdown from '../../components/general/Dropdown/Dropdown.component'
 function SignUp() {
 
     const context = useAuthContext()
@@ -115,7 +115,7 @@ function SignUp() {
                                     onChange={(event) => onInputText(event, setPhone)}
                                 />
                             </div>
-                        </div>   
+                        </div>
                         <div>
                             <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
@@ -147,7 +147,7 @@ function SignUp() {
 
                         <div>
                             <button type="submit"
-                                className="flex w-full justify-center rounded-md bg-teal-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600" 
+                                className="flex w-full justify-center rounded-md bg-teal-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
                                 disabled={isLoading}>
                                 {isLoading ? "Sign Up....." : "Sign Up"}
                             </button>

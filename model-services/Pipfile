@@ -9,6 +9,7 @@ langchain = "*"
 openai = "*"
 google-generativeai = "*"
 pyspark = "*"
+flask-cors = "*"
 
 [dev-packages]
 

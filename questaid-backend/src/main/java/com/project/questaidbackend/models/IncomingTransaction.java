@@ -5,6 +5,8 @@ import com.project.questaidbackend.models.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table
 @RequiredArgsConstructor
@@ -38,6 +40,10 @@ public class IncomingTransaction {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PayingEntityType payingEntity;
+
+    @NonNull
+    @Column
+    private LocalDate transactionDate;
 
 
     @NonNull

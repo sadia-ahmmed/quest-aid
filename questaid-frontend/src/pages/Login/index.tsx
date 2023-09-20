@@ -1,10 +1,10 @@
 import { Button, TextField } from '@mui/material'
 import React, { MouseEventHandler, useState } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
-import resourceUrl from '../../config/Config'
+import { resourceUrl } from '../../config/Config'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
-import Dropdown from '../../components/Dropdown'
+import Dropdown from '../../components/general/Dropdown/Dropdown.component'
 
 function LoginPage() {
 

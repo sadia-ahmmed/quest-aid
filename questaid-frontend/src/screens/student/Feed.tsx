@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import MessageSender from '../../components/Message';
-import Post from '../../components/Post';
+import MessageSender from '../../components/general/Message/Message.component';
+import Post from '../../components/general/Post/Post.component';
 
 interface PostData {
   id: string;

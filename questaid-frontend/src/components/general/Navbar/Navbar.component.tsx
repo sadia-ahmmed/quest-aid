@@ -1,7 +1,8 @@
 import { useState } from "react";
 import React from "react";
-import { useAuthContext } from "../context/AuthContext";
 import SearchIcon from '@mui/icons-material/Search';
+import { useAuthContext } from "../../../context/AuthContext";
+
 const notAuthNavLinks = [
   {
     id: "home",
@@ -37,15 +38,15 @@ const Navbar = () => {
 
   return (
     <nav className="w-full flex py-2 justify-between items-center navbar bg-teal-600">
-    {/* Left Side Search Bar */}
+      {/* Left Side Search Bar */}
       {/* Left Side Search Bar */}
       <h4 className="text-m text-teal" style={{ marginLeft: 25 }}>
         Logo
       </h4>
       <div className="flex items-center">
-      
+
         <input
-        
+
           type="text"
           placeholder="Search"
           value={searchQuery}
@@ -55,35 +56,33 @@ const Navbar = () => {
       </div>
 
       {/* Logo */}
-    
+
 
       {/* Desktop Navigation */}
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {isLoggedIn
           ? authNavLinks.map((nav, index) => (
-              <li
-                key={nav.id}
-                className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                  active === nav.title ? "text-teal-400" : "text-dimWhite"
+            <li
+              key={nav.id}
+              className={`font-poppins font-normal cursor-pointer text-[16px] ${active === nav.title ? "text-teal-400" : "text-dimWhite"
                 } ${index === authNavLinks.length - 1 ? "mr-0" : "mr-10"}`}
-                onClick={() => setActive(nav.title)}
-                style={{ marginRight: 40 }}
-              >
-                <a href={`/${nav.id}`}>{nav.title}</a>
-              </li>
-            ))
+              onClick={() => setActive(nav.title)}
+              style={{ marginRight: 40 }}
+            >
+              <a href={`/${nav.id}`}>{nav.title}</a>
+            </li>
+          ))
           : notAuthNavLinks.map((nav, index) => (
-              <li 
-                key={nav.id}
-                className={`font-poppins font-normal cursor-pointer text-[14px]${
-                  active === nav.title ? "text-teal-400" : "text-dimWhite"
+            <li
+              key={nav.id}
+              className={`font-poppins font-normal cursor-pointer text-[14px]${active === nav.title ? "text-teal-400" : "text-dimWhite"
                 } ${index === notAuthNavLinks.length - 1 ? "mr-0" : "mr-10"}`}
-                onClick={() => setActive(nav.title)}
-                style={{ marginRight: 40 }}
-              >
-                <a href={`/${nav.id}`}>{nav.title}</a>
-              </li>
-            ))}
+              onClick={() => setActive(nav.title)}
+              style={{ marginRight: 40 }}
+            >
+              <a href={`/${nav.id}`}>{nav.title}</a>
+            </li>
+          ))}
       </ul>
     </nav>
   );
