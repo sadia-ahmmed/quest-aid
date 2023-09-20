@@ -35,7 +35,6 @@ public class Organization {
     @Column(nullable = false)
     private String phone;
 
-
     @OneToMany(mappedBy = "organizationEntity", cascade = CascadeType.ALL, targetEntity = SocialLinks.class)
     private List<SocialLinks> socialLinks;
 

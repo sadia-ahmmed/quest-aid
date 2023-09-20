@@ -7,7 +7,7 @@ import { HeaderBuilder } from '../../config/HeaderBuilder'
 import { useNavigate } from "react-router-dom";
 import { Inbox, Mail } from '@mui/icons-material'
 import EntityNameViewerFactory from '../../components/EntityNameViewerFactory'
-
+import Sidebar from '../../components/Sidebar'
 function Dashboard() {
 
     const navigate = useNavigate()
@@ -53,6 +53,9 @@ function Dashboard() {
 
     return (
         <div>
+            <>
+            <Sidebar/> 
+            </>
             <br />
             <EntityNameViewerFactory />
             <br />
