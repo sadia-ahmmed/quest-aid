@@ -4,10 +4,12 @@ import { useAuthContext } from './context/AuthContext';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppRouter from './router/AppRouter';
 import AuthRouter from './router/AuthRouter';
-import Navbar from './components/Navbar';
-function App() {
+import Navbar from './components/general/Navbar/Navbar.component';
+import IndexPage from './pages/IndexPage';
 
-  const { isLoggedIn, setLoggedIn, userCache, setUserCache, jwtToken, setJwtToken } = useAuthContext()
+const App = () => {
+
+  const { isLoggedIn, setLoggedIn, setUserCache, setJwtToken } = useAuthContext()
 
   useEffect(() => {
     const locallyStoredLoggedIn = localStorage.getItem("loggedIn")

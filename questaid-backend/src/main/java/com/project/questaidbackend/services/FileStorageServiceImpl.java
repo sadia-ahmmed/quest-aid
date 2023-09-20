@@ -71,7 +71,6 @@ public class FileStorageServiceImpl implements IFileStorageService {
 
 
     private Resource tryToSendFile(String desiredPath, String filename) throws MalformedURLException {
-        System.out.println("Desired path: " + desiredPath);
         Path desiredRoot = getDesiredRoot(desiredPath);
         Path file = desiredRoot.resolve(filename);
         Resource resource = new UrlResource(file.toUri());

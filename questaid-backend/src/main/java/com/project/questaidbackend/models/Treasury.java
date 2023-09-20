@@ -2,10 +2,7 @@ package com.project.questaidbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -25,6 +22,10 @@ public class Treasury {
     @JoinColumn(name = "club_id", referencedColumnName = "id")
     @JsonIgnore
     private Club club;
+
+    @NonNull
+    @Column
+    private double assignedBudget = 0.0d;
 
     @OneToMany(mappedBy = "clubTreasury", targetEntity = IncomingTransaction.class)
     @JsonIgnore

@@ -5,6 +5,8 @@ import com.project.questaidbackend.models.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table
 @RequiredArgsConstructor
@@ -36,6 +38,9 @@ public class OutgoingTransaction {
     @Column(nullable = false)
     private PayingEntityType payingEntity = PayingEntityType.CLUB;
 
+    @NonNull
+    @Column
+    private LocalDate transactionDate;
 
     @NonNull
     @ManyToOne(targetEntity = Treasury.class)

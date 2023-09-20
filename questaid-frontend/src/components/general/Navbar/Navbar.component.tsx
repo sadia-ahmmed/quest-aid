@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../../context/AuthContext";
 
 const notAuthNavLinks = [
   {

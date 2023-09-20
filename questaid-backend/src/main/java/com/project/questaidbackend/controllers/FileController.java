@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.apache.tomcat.util.codec.binary.Base64;
+import java.io.IOException;
+import java.util.Base64;
+
 
 @RestController
 @AllArgsConstructor
@@ -20,9 +22,16 @@ public class FileController {
     private IFileStorageService fileStorageService;
 
     @GetMapping("/load/{desiredPath}/{filename}")
-    public ResponseEntity<Resource> getFile(@PathVariable String desiredPath, @PathVariable String filename) {
+    public ResponseEntity<byte[]> getFile(@PathVariable String desiredPath, @PathVariable String filename) {
         Resource file = fileStorageService.load(filename, desiredPath);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+        try {
+            byte[] base64data = Base64.getEncoder().encode(file.getContentAsByteArray());
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(base64data);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
     }
 }

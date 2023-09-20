@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar } from '@mui/material';
-import demoUser from './demoUser';
+import demoUser from '../../demoUser';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
@@ -47,15 +47,15 @@ const MessageSender: React.FC<MessageSenderProps> = () => {
 
         </form>
       </div>
-      
+
       <div className="messageSender_bottom flex justify-between mt-3">
         {
-          entityType==="organization" ? <>
+          entityType === "organization" ? <>
           </>
-          :
-          <>
-          
-          </>
+            :
+            <>
+
+            </>
 
         }
         <div className="messageSender_option flex items-center">

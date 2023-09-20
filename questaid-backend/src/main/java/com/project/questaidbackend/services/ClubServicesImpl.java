@@ -40,7 +40,7 @@ public class ClubServicesImpl implements IClubService {
 
         try {
             String filepath = fileStorageService.save(file, "logo");
-            club.setClubLogoPath(filepath);
+            club.setAvatarPath(filepath);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

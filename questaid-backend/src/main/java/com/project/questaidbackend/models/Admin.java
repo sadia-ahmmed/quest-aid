@@ -29,10 +29,17 @@ public class Admin {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column
+    private String avatarPath;
+
     @NotBlank(message = "Password cannot be blank")
     @NonNull
     @Column(nullable = false)
     private String password;
+
+    @NonNull
+    @Column
+    private double currentBudget = 0.0d;
 
     @OneToMany(mappedBy = "assignedAdmin", cascade = CascadeType.ALL, targetEntity = Club.class)
     private List<Club> assignedAdmin;

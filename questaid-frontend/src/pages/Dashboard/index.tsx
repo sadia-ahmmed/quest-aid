@@ -1,12 +1,13 @@
 import { Box, Button, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import axios from 'axios'
-import resourceUrl from '../../config/Config'
+import { resourceUrl } from '../../config/Config'
 import { HeaderBuilder } from '../../config/HeaderBuilder'
 import { useNavigate } from "react-router-dom";
 import { Inbox, Mail } from '@mui/icons-material'
-import EntityNameViewerFactory from '../../components/EntityNameViewerFactory'
+import EntityNameViewerFactory from '../../middleware/factories/EntityNameViewerFactory'
+import ImageDisplay from '../../components/general/ImageDisplay/ImageDisplay.component'
 
 function Dashboard() {
 
@@ -20,24 +21,42 @@ function Dashboard() {
     const entityType = localStorage.getItem("entityType")
     const entityId = localStorage.getItem("entityId")
 
+    const [image, setImage] = useState<any | null>(null)
+
 
     useEffect(() => {
 
-        const httpEntityPolling = async () => {
+        const headers = headerBuilder.addAuthorization(token).build()
 
-            const headers = headerBuilder.addAuthorization(token).build()
+        const loadLogo = (filename: string) => {
+            const url = `${resourceUrl}/files/load/logo/${filename}`
 
+            axios.get(url, { headers: headers })
+                .then((response) => {
+                    setImage(response.data)
+                })
+                .catch((err) => {
+                    alert("Error loading image")
+                })
+        }
+
+
+        const httpEntityPolling = () => {
             const url = `${resourceUrl}/${entityType}/by/${entityEmail}/email`
 
             axios.get(url, { headers: headers })
                 .then((response) => {
                     setUserCache(response.data)
                     localStorage.setItem("entityId", response.data.id)
+                    if (response.data.avatarPath) {
+                        loadLogo(response.data.avatarPath)
+                    }
                 })
                 .catch((error) => {
                     alert(error.response.data.key)
                 })
         }
+
 
         httpEntityPolling()
     }, [])
@@ -53,8 +72,9 @@ function Dashboard() {
 
     return (
         <div>
+            {image ? <ImageDisplay imageData={image} /> : <p>No image</p>}
             <br />
-            <EntityNameViewerFactory />
+            {userCache && <EntityNameViewerFactory />}
             <br />
             <Button color='error' variant='contained' onClick={onLogoutButtonClick}>
                 Logout

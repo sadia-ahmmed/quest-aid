@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import resourceUrl from '../../config/Config'
+import { resourceUrl } from '../../config/Config'
 
 function AdminLogin() {
 
