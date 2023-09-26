@@ -1,5 +1,6 @@
 package com.project.questaidbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -43,4 +44,8 @@ public class Admin {
 
     @OneToMany(mappedBy = "assignedAdmin", cascade = CascadeType.ALL, targetEntity = Club.class)
     private List<Club> assignedAdmin;
+
+    @OneToMany(mappedBy = "assignedUnderAdmin", cascade = CascadeType.ALL, targetEntity = Student.class)
+    @JsonIgnore
+    private List<Student> studentsUnderAdmin;
 }

@@ -15,6 +15,7 @@ import com.project.questaidbackend.services.interfaces.IStudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -79,6 +80,13 @@ public class ClubMemberServiceImpl implements IClubMemberService {
         ClubMember clubMember = unwrapClubMember(clubMemberRepository.findById(clubMemberId), clubMemberId);
         clubMember.setClubMemberRoles(newRole);
         return clubMemberRepository.save(clubMember);
+    }
+    
+
+    @Override
+    public List<Student> getClubMembersByClubId(Long id) {
+        List<ClubMember> clubMembers = clubMemberRepository.findByClubId(id);
+        return clubMembers.stream().map(ClubMember::getStudent).toList();
     }
 
     static ClubMember unwrapClubMember(Optional<ClubMember> entity, Long id) {

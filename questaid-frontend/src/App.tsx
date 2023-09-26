@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './App.css';
 import { useAuthContext } from './context/AuthContext';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import AppRouter from './router/AppRouter';
 import AuthRouter from './router/AuthRouter';
 import Navbar from './components/general/Navbar/Navbar.component';
@@ -17,7 +17,8 @@ const App = () => {
     if (locallyStoredLoggedIn) {
       setLoggedIn(true)
       setJwtToken(localStorage.getItem("token"))
-      setUserCache(localStorage.getItem("userIdentifier"))
+      setUserCache(localStorage.getItem("entityIdentifier"))
+
     }
 
   }, [])

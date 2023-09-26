@@ -1,8 +1,11 @@
 package com.project.questaidbackend.services.interfaces;
 
 import com.project.questaidbackend.models.ClubMember;
+import com.project.questaidbackend.models.Student;
 import com.project.questaidbackend.models.base.ResponseClubMember;
 import com.project.questaidbackend.models.enums.ClubMemberRoles;
+
+import java.util.List;
 
 public interface IClubMemberService {
     ResponseClubMember getResponseClubMember(Long id);
@@ -23,4 +26,5 @@ public interface IClubMemberService {
     ClubMember addMemberInClub(Long studentId, Long clubId);
     ClubMember changeDepartment(Long oldDepartmentId, Long newDepartmentId, Long clubMemberId);
     ClubMember changeMemberRole(Long clubMemberId, ClubMemberRoles newRole);
+    List<Student> getClubMembersByClubId(Long id);
 }

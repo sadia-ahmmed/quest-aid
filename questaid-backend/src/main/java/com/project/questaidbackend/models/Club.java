@@ -54,6 +54,7 @@ public class Club {
 
     // * a one-to-many mapping to club departments class
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = ClubDepartment.class)
+    @JsonIgnore
     private List<ClubDepartment> clubDepartments;
 
     // * a one-to-many mapping to task class
@@ -62,12 +63,13 @@ public class Club {
     private List<Task> memberTasks;
 
     // * a one-to-one mapping to treasury class
-//    @JsonIgnore
     @OneToOne(mappedBy = "club", cascade = CascadeType.ALL, targetEntity = Treasury.class)
+    @JsonIgnore
     private Treasury treasury;
 
     // * a one-to-many mapping to event class
     @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.PERSIST, targetEntity = Event.class)
+    @JsonIgnore
     private List<Event> events;
 
     @OneToMany(mappedBy = "clubEntity", cascade = CascadeType.ALL, targetEntity = SocialLinks.class)

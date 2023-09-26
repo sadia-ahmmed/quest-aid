@@ -12,6 +12,8 @@ import Sidebar from '../components/Sidebar';
 import EventComponent from '../components/club/EventComponent/EventComponent.component';
 import CreateEvent from '../components/club/CreateEvent/CreateEvent.component';
 import EventPublicPage from '../pages/EventPublicPage';
+import ManageDepartment from '../components/club/ManageDepartment/ManageDepartment.component';
+import CreateDepartment from '../components/club/CreateDepartment/CreateDepartment.component';
 
 function AppRouter() {
 
@@ -32,6 +34,8 @@ function AppRouter() {
                 {entityType === "club" && <Route path='/club/announcement/create' element={<CreateAnnouncement />} />}
                 {entityType === "club" && <Route path='/club/events' element={<EventComponent />} />}
                 {entityType === "club" && <Route path='/club/event/create' element={<CreateEvent />} />}
+                {entityType === "club" && <Route path='/club/departments' element={<ManageDepartment />} />}
+                {entityType === "club" && <Route path='/club/departments/create' element={<CreateDepartment />} />}
 
                 {/* ADMIN ROUTES */}
                 {entityType === "admin" && <Route path='/admin/create-club' element={<CreateClubComponent />} />}

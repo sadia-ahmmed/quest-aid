@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ClubMemberRepository extends CrudRepository<ClubMember, Long> {
     Optional<ClubMember> findByStudentId(Long id);
+    List<ClubMember> findByClubId(Long clubId);
 }
