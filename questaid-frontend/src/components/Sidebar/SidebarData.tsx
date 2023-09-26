@@ -30,7 +30,7 @@ export const ClubSidebarData: SidebarItem[] = [
   },
   {
     title: "Departments",
-    path: "/announcements",
+    path: "/club/departments",
     icon: <ShoppingCartIcon />,
     cName: "nav-text",
   },

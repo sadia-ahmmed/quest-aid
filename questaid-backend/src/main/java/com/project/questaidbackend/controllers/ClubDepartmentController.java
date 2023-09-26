@@ -33,15 +33,23 @@ public class ClubDepartmentController {
         return new ResponseEntity<>(clubDepartmentService.getClubDepartment(id), HttpStatus.OK);
     }
 
+    @GetMapping("/get-members/{id}")
+    public ResponseEntity<List<ResponseClubMember>> getAllDepartmentMembers(@PathVariable Long id) {
+        return new ResponseEntity<>(clubDepartmentService.getDepartmentMembers(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/departments/{clubId}/club")
+    public ResponseEntity<List<ClubDepartment>> getDepartmentsByClubId(@PathVariable Long clubId) {
+        return new ResponseEntity<>(clubDepartmentService.getDepartmentsByClubId(clubId), HttpStatus.OK);
+    }
+
+
     @PostMapping("/create/{id}/club")
     public ResponseEntity<ClubDepartment> createDepartment(@Valid @RequestBody ClubDepartment clubDepartment, @PathVariable Long id) {
         return new ResponseEntity<>(clubService.addDepartment(clubDepartment, id), HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-members/{id}")
-    public ResponseEntity<List<ResponseClubMember>> getAllDepartmentMembers(@PathVariable Long id) {
-        return new ResponseEntity<>(clubDepartmentService.getDepartmentMembers(id), HttpStatus.OK);
-    }
+
 
     /**
      *
@@ -68,7 +76,6 @@ public class ClubDepartmentController {
             EnumDto enumDto = new ObjectMapper().readValue(newRole, EnumDto.class);
             System.out.println("Check " + ClubMemberRoles.valueOf(enumDto.getContent()));
             return new ResponseEntity<>(clubMemberService.changeMemberRole(id, ClubMemberRoles.valueOf(enumDto.getContent())), HttpStatus.CREATED);
-//            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("JSON couldn't be processed");

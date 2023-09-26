@@ -3,6 +3,7 @@ package com.project.questaidbackend.services.interfaces;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.ClubDepartment;
+import com.project.questaidbackend.models.Student;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

@@ -1,12 +1,15 @@
 package com.project.questaidbackend.controllers;
 
 import com.project.questaidbackend.models.ClubMember;
+import com.project.questaidbackend.models.Student;
 import com.project.questaidbackend.models.base.ResponseClubMember;
 import com.project.questaidbackend.services.interfaces.IClubMemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -21,9 +24,16 @@ public class ClubMemberController {
      * @return JSON ClubMember
      */
     @GetMapping("/private/{id}")
-    private ResponseEntity<ClubMember> getClubMemberPublic(@PathVariable Long id) {
+    public ResponseEntity<ClubMember> getClubMemberPublic(@PathVariable Long id) {
         return new ResponseEntity<>(clubMemberService.getClubMemberAllDetailsById(id), HttpStatus.OK);
     }
+
+
+    @GetMapping("/get/members/{clubId}/club")
+    public ResponseEntity<List<Student>> getClubMembersByClubId(@PathVariable Long clubId) {
+        return new ResponseEntity<>(clubMemberService.getClubMembersByClubId(clubId), HttpStatus.OK);
+    }
+
 
     /**
      * Gets you the name, email etc. public details
@@ -31,7 +41,7 @@ public class ClubMemberController {
      * @return JSON ResponseClubMember
      */
     @GetMapping("/public/{id}")
-    private ResponseEntity<ResponseClubMember> getClubMember(@PathVariable Long id) {
+    public ResponseEntity<ResponseClubMember> getClubMember(@PathVariable Long id) {
         return new ResponseEntity<>(clubMemberService.getClubMemberById(id), HttpStatus.OK);
     }
 

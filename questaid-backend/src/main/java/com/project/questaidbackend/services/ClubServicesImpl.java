@@ -4,6 +4,7 @@ import com.project.questaidbackend.exceptions.EntityNotFoundException;
 import com.project.questaidbackend.models.Admin;
 import com.project.questaidbackend.models.Club;
 import com.project.questaidbackend.models.ClubDepartment;
+import com.project.questaidbackend.models.Student;
 import com.project.questaidbackend.repository.ClubRepository;
 import com.project.questaidbackend.services.interfaces.IClubDepartmentService;
 import com.project.questaidbackend.services.interfaces.IClubService;
@@ -68,6 +69,7 @@ public class ClubServicesImpl implements IClubService {
         return clubRepository.findByAssignedAdminId(id);
     }
 
+
     @Override
     public Club getClubById(Long id) {
         Optional<Club> club = clubRepository.findById(id);
@@ -85,6 +87,8 @@ public class ClubServicesImpl implements IClubService {
         Club club = getClubById(clubId);
         return clubDepartmentService.addDepartment(department, club);
     }
+
+
 
     static Club unwrapClub(Optional<Club> entity, Long id) {
         if (entity.isPresent()) return entity.get();

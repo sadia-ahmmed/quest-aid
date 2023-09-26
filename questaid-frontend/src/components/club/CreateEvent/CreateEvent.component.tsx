@@ -9,6 +9,9 @@ const CreateEvent = () => {
     const [eventName, setEventName] = useState("")
     const [eventDescription, setDescription] = useState("")
     const [eventType, setEventType] = useState("")
+    const [startDate, setStartDate] = useState<Date | undefined>()
+    const [endDate, setEndDate] = useState<Date | undefined>()
+
     const [ongoingSubmit, setOngoignSubmit] = useState(false)
     const [promptText, setPromptText] = useState<string | undefined>("")
     const [isPromptFieldVisible, setPromptFieldVisible] = useState<boolean | undefined>(false)
@@ -53,7 +56,7 @@ const CreateEvent = () => {
 
         const url = `${resourceUrl}/event/create/${entityId}/club`
         const body = {
-            eventName, eventDescription, eventType
+            eventName, eventDescription, eventType, startDate, endDate
         }
 
         console.table(body)
@@ -132,6 +135,7 @@ const CreateEvent = () => {
                             placeholder="Enter event description"
                             rows={10}
                             value={eventDescription}
+                            onChange={(event) => onInputText(event, setDescription)}
                         >
                         </textarea>
                     </div>
@@ -148,6 +152,29 @@ const CreateEvent = () => {
                             placeholder="Workshop/Seminar/etc"
                             value={eventType}
                             onChange={(event: any) => onInputText(event, setEventType)}
+                        />
+                    </div>
+                </div>
+                <br />
+                <div style={{ marginLeft: 300, display: "flex", justifyContent: "center" }}>
+                    <div className="items-center text-left justify-between">
+                        <label htmlFor="title" className="block text-md font-medium leading-6 text-gray-900" style={{ marginRight: 10 }}>
+                            Start Date
+                        </label>
+                        <input
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            type="date"
+                            onChange={(event: any) => onInputText(event, setStartDate)}
+                        />
+                    </div>
+                    <div style={{ marginLeft: 200 }} className="items-center text-left justify-between">
+                        <label htmlFor="title" className="block text-md font-medium leading-6 text-gray-900" style={{ marginRight: 10 }}>
+                            Start Date
+                        </label>
+                        <input
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            type="date"
+                            onChange={(event: any) => onInputText(event, setEndDate)}
                         />
                     </div>
                 </div>

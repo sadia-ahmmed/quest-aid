@@ -34,6 +34,10 @@ public class Student {
     private String password;
 
     @NonNull
+    @Column
+    private String universityId;
+
+    @NonNull
     @Column(unique = true, nullable = false)
     private String phone;
 
@@ -55,4 +59,9 @@ public class Student {
 
     @ManyToMany(mappedBy = "participants", targetEntity = Event.class, cascade = CascadeType.ALL)
     private List<Event> eventsParticipating;
+
+    @ManyToOne(optional = false, targetEntity = Admin.class)
+    @JoinColumn(referencedColumnName = "id")
+    private Admin assignedUnderAdmin;
+
 }

@@ -27,6 +27,11 @@ public class ClubDepartmentServicesImpl implements IClubDepartmentService {
     }
 
     @Override
+    public List<ClubDepartment> getDepartmentsByClubId(Long clubId) {
+        return clubDepartmentRepository.findByClubId(clubId);
+    }
+
+    @Override
     public ClubDepartment addDepartment(ClubDepartment department, Club club) {
         department.setClub(club);
         return clubDepartmentRepository.save(department);
