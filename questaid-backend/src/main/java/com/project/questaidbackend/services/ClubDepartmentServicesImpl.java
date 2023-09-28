@@ -40,13 +40,7 @@ public class ClubDepartmentServicesImpl implements IClubDepartmentService {
     @Override
     public List<ResponseClubMember> getDepartmentMembers(Long departmentId) {
         List<ClubMember> clubMemberList = getClubDepartment(departmentId).getClubMemberList();
-        return clubMemberList.stream().map(
-                clubMember -> new ResponseClubMember(
-                        clubMember.getStudent().getName(),
-                        clubMember.getStudent().getEmail(),
-                        clubMember.getStudent().getPhone(),
-                        clubMember.getClubMemberRoles().toString(),
-                        clubMember.getClubDepartment().getDepartmentName()))
+        return clubMemberList.stream().map(ResponseClubMember::new)
                 .collect(Collectors.toList());
     }
 

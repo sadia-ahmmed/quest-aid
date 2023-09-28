@@ -9,6 +9,9 @@ import lombok.*;
 public class ResponseClubMember {
 
     @NonNull
+    private Long clubMemberId;
+
+    @NonNull
     private String name;
 
     @NonNull
@@ -24,9 +27,10 @@ public class ResponseClubMember {
     private String departmentName;
 
     public ResponseClubMember(ClubMember clubMember) {
+        this.clubMemberId = clubMember.getId();
         this.name = clubMember.getStudent().getName();
-        this.email = clubMember.getClub().getEmail();
-        this.phone = clubMember.getClub().getPhone();
+        this.email = clubMember.getStudent().getEmail();
+        this.phone = clubMember.getStudent().getPhone();
         this.clubMemberRoles = clubMember.getClubMemberRoles().toString();
         this.departmentName = clubMember.getClubDepartment().getDepartmentName();
     }

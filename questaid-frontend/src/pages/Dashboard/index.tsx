@@ -73,11 +73,13 @@ function Dashboard() {
     }
 
     return (
-        <div>
-            {image ? <ImageDisplay imageData={image} /> : <p>No image</p>}
-            <br />
-            {userCache && <EntityNameViewerFactory />}
-            <br />
+        <div className='ml-80'>
+            <div className='flex align-center items-center mt-10'>
+                {image ? <ImageDisplay width={150} height={150} imageData={image} /> : <p>No image</p>}
+                <div style={{ marginLeft: 30 }}>
+                    {userCache && <EntityNameViewerFactory />}
+                </div>
+            </div>
             <Button color='error' variant='contained' onClick={onLogoutButtonClick}>
                 Logout
             </Button>

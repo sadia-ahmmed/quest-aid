@@ -32,7 +32,7 @@ const EventComponent = () => {
                 <h2 className="mt-5 text-left text-3xl font-bold leading-9 tracking-tight text-teal-800" style={{ marginLeft: 300 }}>
                     Events
                 </h2>
-                <Button variant='contained' color='success' style={{ margin: 10, marginLeft: 100, marginTop: 33 }} onClick={() => navigate("/club/event/create")}>
+                <Button variant='contained' style={{ margin: 10, marginLeft: 100, marginTop: 33, backgroundColor: 'teal' }} onClick={() => navigate("/club/event/create")}>
                     Add Event
                 </Button>
             </div>
