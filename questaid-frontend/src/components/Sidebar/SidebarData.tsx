@@ -36,7 +36,7 @@ export const ClubSidebarData: SidebarItem[] = [
   },
   {
     title: "Members",
-    path: "/team",
+    path: "/club/members",
     icon: <PeopleAltIcon />,
     cName: "nav-text",
   },

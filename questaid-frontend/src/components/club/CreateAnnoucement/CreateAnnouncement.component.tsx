@@ -92,11 +92,15 @@ export const CreateAnnouncement = () => {
 
 
     return (
-        <div className="mx-auto max-w-xl"  >
-            <FeatureHeadingTitle title='Create Announcement' isCenter={false} />
-            <InputBuilderFactory title='Title' placeholder='Enter title' isTitleCenter={false} inputType='text' inputValue={title} setInputValue={setTitle} isTextAreaInput={false} />
+        <div className="w-1/2"  >
+            <div className='flex ml-80'>
+                <FeatureHeadingTitle title='Create Announcement' isCenter={false} />
+            </div>
+            <div className='flex ml-80'>
+                <InputBuilderFactory title='Title' placeholder='Enter title' isTitleCenter={false} inputType='text' inputValue={title} setInputValue={setTitle} isTextAreaInput={false} />
+            </div>
             <br />
-            <div>
+            <div className='ml-80'>
                 <div className="flex items-center justify-between">
                     <label htmlFor="content" className="block text-sm font-medium leading-6 text-gray-900">
                         Enter content

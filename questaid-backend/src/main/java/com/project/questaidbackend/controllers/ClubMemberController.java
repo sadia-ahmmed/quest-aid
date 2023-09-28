@@ -34,6 +34,11 @@ public class ClubMemberController {
         return new ResponseEntity<>(clubMemberService.getClubMembersByClubId(clubId), HttpStatus.OK);
     }
 
+    @GetMapping("/get/members/details/{clubId}/club")
+    public ResponseEntity<List<ResponseClubMember>> getClubMembersAsResponseMemberByClubId(@PathVariable Long clubId) {
+        return new ResponseEntity<>(clubMemberService.getClubMembersAsResponseMemberByClubId(clubId), HttpStatus.OK);
+    }
+
 
     /**
      * Gets you the name, email etc. public details

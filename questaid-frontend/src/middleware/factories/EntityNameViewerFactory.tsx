@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuthContext } from '../../context/AuthContext'
+import { Typography } from '@mui/material'
 
 function EntityNameViewerFactory() {
 
@@ -7,12 +8,12 @@ function EntityNameViewerFactory() {
     const { userCache } = useAuthContext()
 
     return (
-        <p>
+        <Typography variant='h4'>
             {entityType === "student" && `${userCache.name}`}
             {entityType === "club" && `${userCache.clubName}`}
             {entityType === "organization" && `${userCache.name}`}
             {entityType === "admin" && `${userCache.name}`}
-        </p>
+        </Typography>
     )
 }
 

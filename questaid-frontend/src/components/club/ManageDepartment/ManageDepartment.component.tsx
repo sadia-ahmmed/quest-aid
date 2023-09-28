@@ -30,16 +30,16 @@ const ManageDepartment = () => {
     }
 
     return (
-        <div className='justify-start'>
-            <div className='flex ml-80 gap-x-10 items-center'>
+        <div className="ml-80">
+            <div className='flex items-center'>
                 <FeatureHeadingTitle title='Departments' isCenter={false} />
-                <Button color='info' variant='contained' onClick={() => navigate("/club/departments/create")}>
+                <Button sx={{ backgroundColor: 'teal' }} variant='contained' style={{ margin: 10, marginLeft: 100, marginTop: 33 }} onClick={() => navigate("/club/departments/create")}>
                     Add Department
                 </Button>
             </div>
-            <hr />
+            <hr className='w-1/4 mt-5' />
             <br />
-            <div className="flex ml-80">
+            <div className="flex">
                 <ul>
                     {
                         departments.map((department: any) => {

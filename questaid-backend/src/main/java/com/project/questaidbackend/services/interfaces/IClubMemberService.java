@@ -27,4 +27,5 @@ public interface IClubMemberService {
     ClubMember changeDepartment(Long oldDepartmentId, Long newDepartmentId, Long clubMemberId);
     ClubMember changeMemberRole(Long clubMemberId, ClubMemberRoles newRole);
     List<Student> getClubMembersByClubId(Long id);
+    List<ResponseClubMember> getClubMembersAsResponseMemberByClubId(Long id);
 }

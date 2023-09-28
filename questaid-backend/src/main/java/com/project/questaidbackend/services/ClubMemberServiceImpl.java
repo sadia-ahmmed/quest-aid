@@ -81,12 +81,18 @@ public class ClubMemberServiceImpl implements IClubMemberService {
         clubMember.setClubMemberRoles(newRole);
         return clubMemberRepository.save(clubMember);
     }
-    
+
 
     @Override
     public List<Student> getClubMembersByClubId(Long id) {
         List<ClubMember> clubMembers = clubMemberRepository.findByClubId(id);
         return clubMembers.stream().map(ClubMember::getStudent).toList();
+    }
+
+    @Override
+    public List<ResponseClubMember> getClubMembersAsResponseMemberByClubId(Long id) {
+        List<ClubMember> clubMembers = clubMemberRepository.findByClubId(id);
+        return clubMembers.stream().map(ResponseClubMember::new).toList();
     }
 
     static ClubMember unwrapClubMember(Optional<ClubMember> entity, Long id) {
