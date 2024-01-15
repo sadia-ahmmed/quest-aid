@@ -51,6 +51,19 @@ public class TreasuryController {
         return new ResponseEntity<>(treasuryService.getTreasuryByClubId(clubId), HttpStatus.OK);
     }
 
+    @GetMapping("/get/all/{clubId}/club/incoming")
+    public ResponseEntity<List<IncomingTransaction>> getAllIncomingTransactionsForClubById(@PathVariable Long clubId) {
+        Treasury treasury = treasuryService.getTreasuryByClubId(clubId);
+        return new ResponseEntity<>(treasuryService.getTreasuryById(treasury.getId()).getIncomingTransactions(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/all/{clubId}/club/outgoing")
+    public ResponseEntity<List<OutgoingTransaction>> getAllOutgoingTransactionsForClubById(@PathVariable Long clubId) {
+        Treasury treasury = treasuryService.getTreasuryByClubId(clubId);
+        return new ResponseEntity<>(treasuryService.getTreasuryById(treasury.getId()).getOutgoingTransactions(), HttpStatus.OK);
+    }
+
+
     @GetMapping("/get/all/{treasuryId}/incoming")
     public ResponseEntity<List<IncomingTransaction>> getAllIncomingTransactionsForTreasury(@PathVariable Long treasuryId) {
         return new ResponseEntity<>(treasuryService.getTreasuryById(treasuryId).getIncomingTransactions(), HttpStatus.OK);
