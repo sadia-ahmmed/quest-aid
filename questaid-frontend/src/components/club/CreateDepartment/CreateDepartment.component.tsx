@@ -19,7 +19,7 @@ const CreateDepartment = () => {
     const clubId = localStorage.getItem("entityId")
 
     useEffect(() => {
-        const url = `${resourceUrl}/member/get/members/${clubId}/club`
+        const url = `${resourceUrl}/member/get/members/details/${clubId}/club`
         axios.get(url)
             .then((response) => {
                 setClubMembers(response.data)
@@ -96,7 +96,7 @@ const CreateDepartment = () => {
                             label='Set department head'
                             value={deptHeadName}
                             values={clubMembers.map((member: any) => { return member.name })}
-                            handleChange={(event: any) => onInputText(event, setDeptHeadName)}
+                            handleChange={(event: any) => setDeptHeadName(event.target.value)}
                         />
                 }
             </div>

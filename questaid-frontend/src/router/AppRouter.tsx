@@ -15,6 +15,8 @@ import EventPublicPage from '../pages/EventPublicPage';
 import ManageDepartment from '../components/club/ManageDepartment/ManageDepartment.component';
 import CreateDepartment from '../components/club/CreateDepartment/CreateDepartment.component';
 import MembersList from '../components/club/MembersList/MembersList.component';
+import Treasury from '../components/club/Treasury/Treasury.component';
+import CreateTransaction from '../components/club/CreateTransaction/CreateTransaction.component';
 
 function AppRouter() {
 
@@ -41,6 +43,9 @@ function AppRouter() {
                 {entityType === "club" && <Route path='/club/departments/create' element={<CreateDepartment />} />}
 
                 {entityType === "club" && <Route path='/club/members' element={<MembersList />} />}
+
+                {entityType === "club" && <Route path='/club/treasury' element={<Treasury />} />}
+                {entityType === "club" && <Route path='/club/treasury/add' element={<CreateTransaction />} />}
 
                 {/* ADMIN ROUTES */}
                 {entityType === "admin" && <Route path='/admin/create-club' element={<CreateClubComponent />} />}
