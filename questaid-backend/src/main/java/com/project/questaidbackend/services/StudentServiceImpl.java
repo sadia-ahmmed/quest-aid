@@ -44,4 +44,9 @@ public class StudentServiceImpl implements IStudentService {
         if (entity.isPresent()) return entity.get();
         else throw new EntityNotFoundException(id, Student.class);
     }
+
+    static Student unwrapStudent(Optional<Student> entity, String name) {
+        if (entity.isPresent()) return entity.get();
+        else throw new EntityNotFoundException(name, Student.class);
+    }
 }

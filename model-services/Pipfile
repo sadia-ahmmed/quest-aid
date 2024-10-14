@@ -5,11 +5,13 @@ name = "pypi"
 
 [packages]
 flask = "*"
-langchain = "*"
 openai = "*"
 google-generativeai = "*"
 pyspark = "*"
 flask-cors = "*"
+selenium = "*"
+langchain-community = "*"
+langchain = "*"
 
 [dev-packages]
 
